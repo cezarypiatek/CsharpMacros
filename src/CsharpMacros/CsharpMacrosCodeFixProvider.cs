@@ -39,18 +39,22 @@ namespace CsharpMacros
             ["properties"] = new PropertiesMacro()
         };
 
-        private async Task<Document> MakeUppercaseAsync(Document document, Location location, CancellationToken cancellationToken)
+        private async Task<Document> MakeUppercaseAsync(Document document, Location diagnosticLocation, CancellationToken cancellationToken)
         {
-            var diagnosticSpan = location.SourceSpan;
+            var diagnosticSpan = diagnosticLocation.SourceSpan;
             var root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
-            var block = root.FindToken(diagnosticSpan.Start).Parent.Ancestors().OfType<BlockSyntax>().First();
+            var block = root.FindToken(diagnosticSpan.Start).Parent.FirstAncestorOfType<BlockSyntax>();
+            if (block == null)
+            {
+                return document;
+            }
 
             var newStatements = new List<StatementSyntax>();
+            var macroFound = false;
             foreach (var statement in block.Statements)
             {
-                var lineSpan = statement.GetLocation().GetLineSpan();
                 var triviaList = statement.GetLeadingTrivia();
-                if (lineSpan.StartLinePosition.Line > location.GetLineSpan().StartLinePosition.Line && TryGetMacroDescriptor(triviaList, out var macroDescriptor) )
+                if (Contains(statement.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(triviaList, out var macroDescriptor) )
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor.MacroName, out var macro))
                     {
@@ -59,7 +63,8 @@ namespace CsharpMacros
                         var syntaxTree = SyntaxFactory.ParseStatement(newContent);
                         newStatements.Add(syntaxTree);
                     }
-                    newStatements.Add(statement.WithLeadingTrivia(triviaList.Last()));
+                    newStatements.Add(statement.WithLeadingTrivia(triviaList.LastOrDefault()));
+                    macroFound = true;
                 }
                 else
                 {
@@ -67,8 +72,32 @@ namespace CsharpMacros
                 }
             }
 
-            var newBlock = block.WithStatements(new SyntaxList<StatementSyntax>(newStatements));
-            return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
+            if (macroFound)
+            {
+                var newBlock = block.WithStatements(new SyntaxList<StatementSyntax>(newStatements));
+                return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
+            }
+            
+            if (Contains(block.CloseBraceToken.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(block.CloseBraceToken.LeadingTrivia, out var macroDescriptor1))
+            {
+                if (registeredMacros.TryGetValue(macroDescriptor1.MacroName, out var macro))
+                {
+                    var macroContext = await CreateMacroContext(document, cancellationToken);
+                    var newContent = TransformContent(macro, macroDescriptor1, macroContext);
+                    var syntaxTree = SyntaxFactory.ParseStatement(newContent);
+                    var newBlock = block.AddStatements(syntaxTree);
+                    newBlock = newBlock.WithCloseBraceToken(block.CloseBraceToken.WithLeadingTrivia(block.CloseBraceToken.LeadingTrivia.LastOrDefault()));
+                    return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
+                }
+            }
+            return document;
+        }
+
+        private static bool Contains(Location currentStatementLocation, Location diagnosticLocation)
+        {
+            var lineSpan = currentStatementLocation.GetLineSpan();
+            var belongsTo = lineSpan.StartLinePosition.Line > diagnosticLocation.GetLineSpan().StartLinePosition.Line;
+            return belongsTo;
         }
 
         private static string TransformContent(ICsharpMacro macro, MacroDescriptor macroDescriptor, ICsharpMacroContext macroContext)
@@ -125,5 +154,23 @@ namespace CsharpMacros
         }
 
         static readonly Regex macroHeaderSyntax = new Regex("macro\\((?<var>.+?)\\s+in\\s(?<macro>.+?)\\((?<param>.+?)\\)\\)", RegexOptions.Compiled);
+    }
+
+    internal static class SyntaxExtensions
+    {
+        public static T FirstAncestorOfType<T>(this SyntaxNode token) where T : class
+        {
+            if (token is T)
+            {
+                return token as T;
+            }
+
+            if (token.Parent != null)
+            {
+                return FirstAncestorOfType<T>(token.Parent);
+            }
+
+            return default;
+        }
     }
 }
