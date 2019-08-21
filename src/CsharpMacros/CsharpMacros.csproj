@@ -9,14 +9,14 @@
   <PropertyGroup>
     <PackageId>CsharpMacros</PackageId>
     <PackageVersion>1.0.0.0</PackageVersion>
-    <Authors>Cezar</Authors>
-    <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
-    <PackageProjectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</PackageProjectUrl>
-    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
-    <RepositoryUrl>http://REPOSITORY_URL_HERE_OR_DELETE_THIS_LINE</RepositoryUrl>
+    <Authors>Cezary Piątek</Authors>
+    <PackageLicenseUrl>https://github.com/cezarypiatek/CsharpMacros/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/cezarypiatek/CsharpMacros</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://github.com/cezarypiatek/CsharpMacros</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>CsharpMacros</Description>
-    <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
+    <Description> A simple template base system of macros for C# that can be executed in design time</Description>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
     <PackageTags>CsharpMacros, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
