@@ -1,0 +1,36 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+configuration: Release
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+before_build:
+- ps: >-
+    function Set-VsixVersion {
+        param(
+           [Parameter(Mandatory=$true)]
+           [string]$manifestPath,
+           [Parameter(Mandatory=$true)]
+           [string]$Version
+        )
+        $manifestXml = [xml](Get-Content $manifestPath -Raw)
+        $manifestXml.PackageManifest.Metadata.Identity.Version = $Version
+        $manifestXml.save($manifestPath)
+    }
+    Set-VsixVersion -Version "$($env:APPVEYOR_BUILD_VERSION)" -manifestPath C:\projects\csharpmacros\src\CsharpMacros.Vsix\source.extension.vsixmanifest
+- cmd: git submodule update --init --recursive
+- cmd: nuget restore src
+- cmd: dotnet restore src
+build:
+  project: src\CsharpMacros.sln
+  verbosity: minimal
+artifacts:
+- path: src\CsharpMacros.Vsix\bin\Release\CsharpMacros.vsix
+  name: CsharpMacros.vsix
+- path: src\CsharpMacros\bin\Release\CsharpMacros.*.nupkg
+  name: CsharpMacros.*.nupkg
