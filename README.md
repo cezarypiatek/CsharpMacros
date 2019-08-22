@@ -17,3 +17,18 @@ Install as a nuget package
 Install as a nuget package and check `Enable support for roslyn analyzers, code fixes and rulesets` in Settings.
 
 
+## Macro anatomy
+
+![macro anatomy](/doc/macro_anatomy.jpg)
+
+Every macro consists of the following parts
+
+- `Macro Header` in the following format `macro(varname in macro_name(macro_params))` where `varname` represents variable that holds the reference to every element returned by the macro. `macro_name` represents one of the predefined functions that returns data for the template. `macro_params` is the input for macro function.
+
+- `Macro Template` - a template of code that will be repeated for every element returned by the macro function. The template can contain placeholders in the following format `${varname.attribute_name}` that will be replaced with a given attribute value of the element returned by the macro function.
+
+## Currently available macro functions
+
+- `properties` - return a list of properties of given type accepted as the parameter. Available attributes: 
+    - `name` - name of the property
+    - `type` - type of the property
