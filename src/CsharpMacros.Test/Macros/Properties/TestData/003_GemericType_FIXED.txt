@@ -1,0 +1,24 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class GenericType<T>
+    {
+        public int Id { get; set; }
+        public T GenericProperty { get; set; }
+    }
+
+    class _001_ObjectWithOwnProperties
+    {
+
+        public void DoSth()
+        {
+            var user = new UserDTO()
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Age = 32
+            };
+            Assert.AreNotEqual(default(int), user.Id)
+            Assert.AreNotEqual(default(string), user.GenericProperty)
+        }
+    }
+}

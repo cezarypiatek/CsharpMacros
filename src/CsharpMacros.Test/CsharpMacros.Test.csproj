@@ -9,9 +9,13 @@
     <None Remove="Macros\Properties\TestData\001_ObjectWithOwnProperties_FIXED.txt" />
     <None Remove="Macros\Properties\TestData\002_ObjectWithInheritedProperties.txt" />
     <None Remove="Macros\Properties\TestData\002_ObjectWithInheritedProperties_FIXED.txt" />
+    <None Remove="Macros\Properties\TestData\003_GemericType.txt" />
+    <None Remove="Macros\Properties\TestData\003_GemericType_FIXED.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Macros\Properties\TestData\003_GemericType.txt" />
+    <Content Include="Macros\Properties\TestData\003_GemericType_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\002_ObjectWithInheritedProperties.txt" />
     <Content Include="Macros\Properties\TestData\002_ObjectWithInheritedProperties_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\001_ObjectWithOwnProperties_FIXED.txt" />

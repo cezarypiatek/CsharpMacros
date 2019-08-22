@@ -179,5 +179,63 @@ namespace CsharpMacros.Test.Macros.Properties {
                 return ResourceManager.GetString("_002_ObjectWithInheritedProperties_FIXED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class GenericType&lt;T&gt;
+        ///    {
+        ///        public int Id { get; set; }
+        ///        public T GenericProperty { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///
+        ///        public void DoSth()
+        ///        {
+        ///            var user = new UserDTO()
+        ///            {
+        ///                FirstName = &quot;John&quot;,
+        ///                LastName = &quot;Doe&quot;,
+        ///                Age = 32
+        ///            };
+        ///            //[|macro(x in properties(GenericType&lt;string&gt;))|]
+        ///        [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _003_GemericType {
+            get {
+                return ResourceManager.GetString("_003_GemericType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class GenericType&lt;T&gt;
+        ///    {
+        ///        public int Id { get; set; }
+        ///        public T GenericProperty { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///
+        ///        public void DoSth()
+        ///        {
+        ///            var user = new UserDTO()
+        ///            {
+        ///                FirstName = &quot;John&quot;,
+        ///                LastName = &quot;Doe&quot;,
+        ///                Age = 32
+        ///            };
+        ///            Assert.AreNotEqual(default(int), user.Id)
+        ///            Ass [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _003_GemericType_FIXED {
+            get {
+                return ResourceManager.GetString("_003_GemericType_FIXED", resourceCulture);
+            }
+        }
     }
 }
