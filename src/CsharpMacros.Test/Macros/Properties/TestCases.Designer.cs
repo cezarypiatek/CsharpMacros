@@ -237,5 +237,63 @@ namespace CsharpMacros.Test.Macros.Properties {
                 return ResourceManager.GetString("_003_GemericType_FIXED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///
+        ///        public void DoSth()
+        ///        {
+        ///            var user = new UserDTO()
+        ///            {
+        ///                FirstName = &quot;John&quot;,
+        ///                LastName = &quot;Doe&quot;,
+        ///                Age = 32
+        ///            };
+        ///            //[|macro(x in prop [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _004_TypeWithNamespace {
+            get {
+                return ResourceManager.GetString("_004_TypeWithNamespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///
+        ///        public void DoSth()
+        ///        {
+        ///            var user = new UserDTO()
+        ///            {
+        ///                FirstName = &quot;John&quot;,
+        ///                LastName = &quot;Doe&quot;,
+        ///                Age = 32
+        ///            };
+        ///            Assert.AreNotEqual( [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _004_TypeWIthNamespace_FIXED {
+            get {
+                return ResourceManager.GetString("_004_TypeWIthNamespace_FIXED", resourceCulture);
+            }
+        }
     }
 }

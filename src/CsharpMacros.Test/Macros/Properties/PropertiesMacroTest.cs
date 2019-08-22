@@ -27,6 +27,13 @@ namespace CsharpMacros.Test
             TestCodeFix(TestCases._003_GemericType, TestCases._003_GemericType_FIXED, MacroCodeAnalyzer.Rule);
         }
 
+
+        [Test]
+        public void should_be_able_to_execute_macro_for_type_with_partial_namespace()
+        {
+            TestCodeFix(TestCases._004_TypeWithNamespace, TestCases._004_TypeWIthNamespace_FIXED, MacroCodeAnalyzer.Rule);
+        }
+
         protected override string LanguageName => LanguageNames.CSharp;
 
         protected override CodeFixProvider CreateProvider()

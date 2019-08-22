@@ -11,9 +11,13 @@
     <None Remove="Macros\Properties\TestData\002_ObjectWithInheritedProperties_FIXED.txt" />
     <None Remove="Macros\Properties\TestData\003_GemericType.txt" />
     <None Remove="Macros\Properties\TestData\003_GemericType_FIXED.txt" />
+    <None Remove="Macros\Properties\TestData\004_TypeWithNamespace.txt" />
+    <None Remove="Macros\Properties\TestData\004_TypeWIthNamespace_FIXED.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Macros\Properties\TestData\004_TypeWithNamespace.txt" />
+    <Content Include="Macros\Properties\TestData\004_TypeWIthNamespace_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\003_GemericType.txt" />
     <Content Include="Macros\Properties\TestData\003_GemericType_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\002_ObjectWithInheritedProperties.txt" />

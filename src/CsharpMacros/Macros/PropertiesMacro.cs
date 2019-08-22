@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Microsoft.CodeAnalysis;
 
 namespace CsharpMacros.Macros
@@ -9,7 +10,7 @@ namespace CsharpMacros.Macros
     {
         public IEnumerable<Dictionary<string, string>> ExecuteMacro(string param, ICsharpMacroContext context)
         {
-            var typeInfo= GetTypeNameWithoutGenericParameters(param);
+            var typeInfo= GetTypeInfo(param);
             var typeSymbol = FindMatchingSymbol(context, typeInfo);
             if (typeSymbol != null)
             {
@@ -45,7 +46,10 @@ namespace CsharpMacros.Macros
 
         private static INamedTypeSymbol FindMatchingSymbol(ICsharpMacroContext context, TypeInfo typeInfo)
         {
-            var candidates = context.SemanticModel.Compilation.GetSymbolsWithName(typeInfo.Name)?.OfType<INamedTypeSymbol>();
+            var candidates = context.SemanticModel.Compilation.GetSymbolsWithName(typeInfo.Name)?
+                .OfType<INamedTypeSymbol>()
+                .Where(x=> x.ContainingNamespace.ToString().EndsWith(typeInfo.Namespace))
+                ;
 
             if (typeInfo.IsGeneric == false)
             {
@@ -55,22 +59,38 @@ namespace CsharpMacros.Macros
             return candidates?.FirstOrDefault(x=> x.Arity == typeInfo.GenericParameterValues.Length);
         }
 
-        private TypeInfo GetTypeNameWithoutGenericParameters(string typeName)
+        private static string GetFullNamespace(INamedTypeSymbol x)
+        {
+            ISymbol currentSymbol = x;
+            var sb = "";
+            while (currentSymbol!=null)
+            {
+                sb = $"{currentSymbol.ContainingNamespace}." + sb;
+                currentSymbol = currentSymbol.ContainingNamespace;
+            }
+
+            return sb.Trim('.');
+        }
+
+        private TypeInfo GetTypeInfo(string typeName)
         {
             if (typeName.Contains("<"))
             {
-                return new TypeInfo()
+                var fullTypeName = typeName.Substring(0, typeName.IndexOf("<", StringComparison.OrdinalIgnoreCase))
+                    .Trim();
+                var nameParts = fullTypeName.Split('.').ToArray();
+                return new TypeInfo(nameParts)
                 {
-                    Name = typeName.Substring(0, typeName.IndexOf("<", StringComparison.OrdinalIgnoreCase)).Trim(),
                     IsGeneric = true,
                     GenericParameterValues = GetGenericParameterValues(typeName)
                 };
             }
 
-            return new TypeInfo()
+            else
             {
-                Name = typeName.Trim()
-            };
+                var nameParts = typeName.Trim().Split('.').ToArray();
+                return new TypeInfo(nameParts);
+            }
         }
 
         private static string[] GetGenericParameterValues(string typeName)
@@ -83,7 +103,15 @@ namespace CsharpMacros.Macros
 
         class TypeInfo
         {
+            public TypeInfo(string[] nameParts)
+            {
+                Name = nameParts.Last();
+                Namespace = string.Join(".", nameParts.TakeWhile((_, i) => i < nameParts.Length - 1));
+            }
+
             public string Name { get; set; }
+
+            public string Namespace { get; set; }
             public bool IsGeneric { get; set; }
             public string[] GenericParameterValues { get; set; }
         }
