@@ -9,10 +9,10 @@ namespace CsharpMacros.Macros
         public IEnumerable<Dictionary<string, string>> ExecuteMacro(string param, ICsharpMacroContext context)
         {
             var typeName = param;
-            var typeInfo = context.SemanticModel.Compilation.GetSymbolsWithName(typeName)?.OfType<INamedTypeSymbol>().FirstOrDefault();
-            if (typeInfo != null)
+            var typeSymbol = context.SemanticModel.Compilation.GetSymbolsWithName(typeName)?.OfType<INamedTypeSymbol>().FirstOrDefault();
+            if (typeSymbol != null)
             {
-                var members = typeInfo.GetMembers();
+                var members = GetBaseTypesAndThis(typeSymbol).Reverse().SelectMany(t=> t.GetMembers());
                 foreach (var member in members.OfType<IPropertySymbol>())
                 {
                     yield return new Dictionary<string, string>()
@@ -22,6 +22,33 @@ namespace CsharpMacros.Macros
                     };
                 }
             }
+        }
+
+        private static IEnumerable<ITypeSymbol> GetBaseTypesAndThis(ITypeSymbol type)
+        {
+            foreach (var unwrapped in UnwrapGeneric(type))
+            {
+                var current = unwrapped;
+                while (current != null && IsSystemObject(current) == false)
+                {
+                    yield return current;
+                    current = current.BaseType;
+                }
+            }
+        }
+
+        private static IEnumerable<ITypeSymbol> UnwrapGeneric(ITypeSymbol typeSymbol)
+        {
+            if (typeSymbol.TypeKind == TypeKind.TypeParameter && typeSymbol is ITypeParameterSymbol namedType && namedType.Kind != SymbolKind.ErrorType)
+            {
+                return namedType.ConstraintTypes;
+            }
+            return new[] { typeSymbol };
+        }
+
+        private static bool IsSystemObject(ITypeSymbol current)
+        {
+            return current.Name == "Object" && current.ContainingNamespace.Name == "System";
         }
     }
 }
