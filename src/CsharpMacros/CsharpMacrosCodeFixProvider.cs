@@ -38,6 +38,7 @@ namespace CsharpMacros
         {
             ["properties"] = new PropertiesMacro(),
             ["methods"] = new MethodsMacro(),
+            ["values"] = new ValuesMacro(),
         };
 
         private async Task<Document> ExecuteMacro(Document document, Location diagnosticLocation, CancellationToken cancellationToken)
@@ -139,9 +140,9 @@ namespace CsharpMacros
             var matches = macroHeaderSyntax.Match(header);
             descriptor = new MacroDescriptor()
             {
-                MacroName = matches.Groups["macro"].Value,
-                Param = matches.Groups["param"].Value,
-                VarName = matches.Groups["var"].Value,
+                MacroName = matches.Groups["macro"].Value.Trim(),
+                Param = matches.Groups["param"].Value.Trim(),
+                VarName = matches.Groups["var"].Value.Trim(),
                 Template = string.Join("", templateLines).TrimEnd(' ')
              };
             return true;
@@ -154,7 +155,7 @@ namespace CsharpMacros
             return document.WithSyntaxRoot(newRoot);
         }
 
-        static readonly Regex macroHeaderSyntax = new Regex("macro\\((?<var>.+?)\\s+in\\s(?<macro>.+?)\\((?<param>.+?)\\)\\)", RegexOptions.Compiled);
+        static readonly Regex macroHeaderSyntax = new Regex("macro\\((?<var>.+?)\\s+in\\s(?<macro>.+?)\\((?<param>.+)\\)\\s*\\)", RegexOptions.Compiled);
     }
 
     internal static class SyntaxExtensions
