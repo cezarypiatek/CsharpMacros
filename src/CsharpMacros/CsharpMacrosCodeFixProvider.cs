@@ -29,17 +29,18 @@ namespace CsharpMacros
             context.RegisterCodeFix(
                 CodeAction.Create(
                     title: title,
-                    createChangedDocument: c => MakeUppercaseAsync(context.Document, diagnostic.Location, c),
+                    createChangedDocument: c => ExecuteMacro(context.Document, diagnostic.Location, c),
                     equivalenceKey: title),
                 diagnostic);
         }
 
         private readonly Dictionary<string, ICsharpMacro> registeredMacros = new Dictionary<string, ICsharpMacro>()
         {
-            ["properties"] = new PropertiesMacro()
+            ["properties"] = new PropertiesMacro(),
+            ["methods"] = new MethodsMacro(),
         };
 
-        private async Task<Document> MakeUppercaseAsync(Document document, Location diagnosticLocation, CancellationToken cancellationToken)
+        private async Task<Document> ExecuteMacro(Document document, Location diagnosticLocation, CancellationToken cancellationToken)
         {
             var diagnosticSpan = diagnosticLocation.SourceSpan;
             var root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Macros\Methods\TestData\001_ObjectWithOwnMethods.txt" />
+    <None Remove="Macros\Methods\TestData\001_ObjectWithOwnMethods_FIXED.txt" />
+    <None Remove="Macros\Methods\TestData\002_ObjectWithVoidMethod.txt" />
+    <None Remove="Macros\Methods\TestData\002_ObjectWithVoidMethod_FIXED.txt" />
     <None Remove="Macros\Properties\TestData\001_ObjectWithOwnProperties.txt" />
     <None Remove="Macros\Properties\TestData\001_ObjectWithOwnProperties_FIXED.txt" />
     <None Remove="Macros\Properties\TestData\002_ObjectWithInheritedProperties.txt" />
@@ -16,6 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Macros\Methods\TestData\002_ObjectWithVoidMethod.txt" />
+    <Content Include="Macros\Methods\TestData\001_ObjectWithOwnMethods.txt" />
+    <Content Include="Macros\Methods\TestData\002_ObjectWithVoidMethod_FIXED.txt" />
+    <Content Include="Macros\Methods\TestData\001_ObjectWithOwnMethods_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\004_TypeWithNamespace.txt" />
     <Content Include="Macros\Properties\TestData\004_TypeWIthNamespace_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\003_GemericType.txt" />
@@ -41,6 +49,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Macros\Methods\TestCases.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestCases.resx</DependentUpon>
+    </Compile>
     <Compile Update="Macros\Properties\TestCases.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -49,6 +62,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Macros\Methods\TestCases.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestCases.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Macros\Properties\TestCases.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TestCases.Designer.cs</LastGenOutput>

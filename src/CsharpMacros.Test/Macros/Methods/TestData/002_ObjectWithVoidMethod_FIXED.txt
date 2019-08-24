@@ -1,0 +1,30 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class UserDTO
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+
+        public void DoSth1(int a)
+        {
+        }
+        
+        public void DoSth2(string b)
+        {
+        }
+    }
+
+    class _001_ObjectWithOwnMethods
+    {
+
+        public void DoSth()
+        {
+            var user = new UserDTO();
+            var paramForDoSth1 = default(int);
+            user.DoSth1(paramForDoSth1);
+            var paramForDoSth2 = default(string);
+            user.DoSth2(paramForDoSth2);
+        }
+    }
+}
