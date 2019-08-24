@@ -39,6 +39,8 @@ namespace CsharpMacros
             ["properties"] = new PropertiesMacro(),
             ["methods"] = new MethodsMacro(),
             ["values"] = new ValuesMacro(),
+            ["implement"] = new ImplementMacro(),
+            ["derived"] = new DerivedMacro(),
         };
 
         private async Task<Document> ExecuteMacro(Document document, Location diagnosticLocation, CancellationToken cancellationToken)
@@ -122,7 +124,8 @@ namespace CsharpMacros
         {
             return new CsharpMacroContext()
             {
-                SemanticModel = await document.GetSemanticModelAsync(cancellationToken)
+                SemanticModel = await document.GetSemanticModelAsync(cancellationToken),
+                Solution = document.Project.Solution
             };
         }
 

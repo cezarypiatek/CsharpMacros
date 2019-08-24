@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Macros\Implement\TestData\001_CustomInterface.txt" />
+    <None Remove="Macros\Implement\TestData\001_CustomInterface_FIXED.txt" />
+    <None Remove="Macros\Implement\TestData\002_GenericInterface.txt" />
+    <None Remove="Macros\Implement\TestData\002_GenericInterface_FIXED.txt" />
     <None Remove="Macros\Methods\TestData\001_ObjectWithOwnMethods.txt" />
     <None Remove="Macros\Methods\TestData\001_ObjectWithOwnMethods_FIXED.txt" />
     <None Remove="Macros\Methods\TestData\002_ObjectWithVoidMethod.txt" />
@@ -24,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Macros\Implement\TestData\002_GenericInterface.txt" />
+    <Content Include="Macros\Implement\TestData\001_CustomInterface.txt" />
+    <Content Include="Macros\Implement\TestData\002_GenericInterface_FIXED.txt" />
+    <Content Include="Macros\Implement\TestData\001_CustomInterface_FIXED.txt" />
     <Content Include="Macros\Methods\TestData\002_ObjectWithVoidMethod.txt" />
     <Content Include="Macros\Methods\TestData\001_ObjectWithOwnMethods.txt" />
     <Content Include="Macros\Methods\TestData\002_ObjectWithVoidMethod_FIXED.txt" />
@@ -57,6 +65,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Macros\Implement\TestCases.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestCases.resx</DependentUpon>
+    </Compile>
     <Compile Update="Macros\Methods\TestCases.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -75,6 +88,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Macros\Implement\TestCases.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestCases.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Macros\Methods\TestCases.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TestCases.Designer.cs</LastGenOutput>

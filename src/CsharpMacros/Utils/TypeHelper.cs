@@ -6,14 +6,22 @@ using TypeInfo = CsharpMacros.Utils.TypeInfo;
 
 namespace CsharpMacros.Macros
 {
-    class TypeHelper
+    static class TypeHelper
     {
         public static INamedTypeSymbol FindMatchingSymbol(ICsharpMacroContext context, TypeInfo typeInfo)
         {
-            var candidates = context.SemanticModel.Compilation.GetSymbolsWithName(typeInfo.Name)?
-                    .OfType<INamedTypeSymbol>()
-                    .Where(x => x.ContainingNamespace.ToString().EndsWith(typeInfo.Namespace))
-                ;
+            var namedCandidates = context.SemanticModel.Compilation.GetSymbolsWithName(typeInfo.Name)?
+                    .OfType<INamedTypeSymbol>();
+
+
+            return FindMatchingSymbol(namedCandidates, typeInfo);
+        }
+
+        public static INamedTypeSymbol FindMatchingSymbol(IEnumerable<INamedTypeSymbol> namedCandidates,
+            TypeInfo typeInfo)
+        {
+            var candidates = namedCandidates.Where(x =>
+                x.Name == typeInfo.Name && x.ContainingNamespace.ToString().EndsWith(typeInfo.Namespace));
 
             if (typeInfo.IsGeneric == false)
             {
@@ -84,6 +92,22 @@ namespace CsharpMacros.Macros
             var typeInfo = GetTypeInfo(typeName);
             typeInfo.Symbol = FindMatchingSymbol(context, typeInfo);
             return typeInfo;
+        }
+
+        public static string GetFullGenericName(this INamedTypeSymbol symbol)
+        {
+            if (symbol == null)
+            {
+                return null;
+            }
+
+            if (symbol.IsGenericType == false)
+            {
+                return symbol.Name;
+            }
+
+            var fullName = symbol.ToDisplayString();
+            return fullName.Substring(fullName.LastIndexOf('.') + 1);
         }
     }
 }
