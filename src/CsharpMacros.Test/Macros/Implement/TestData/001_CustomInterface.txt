@@ -15,8 +15,8 @@
 
         public void DoSth()
         {
-            //[|macro(x in implement(ICustomInterface))|]
-            //this.Register<${x.name}, ${x.interface}>()
+            //[|macros.implement(ICustomInterface)|]
+            //this.Register<${name}, ${interface}>()
         }
     }
 }

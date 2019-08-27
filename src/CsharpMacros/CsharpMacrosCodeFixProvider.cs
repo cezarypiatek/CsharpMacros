@@ -112,7 +112,7 @@ namespace CsharpMacros
                 var itemTemplate = macroDescriptor.Template;
                 foreach (var property in item)
                 {
-                    itemTemplate = itemTemplate.Replace($"${{{macroDescriptor.VarName}.{property.Key}}}", property.Value);
+                    itemTemplate = itemTemplate.Replace($"${{{property.Key}}}", property.Value);
                 }
 
                 sb.Append(itemTemplate);
@@ -133,7 +133,7 @@ namespace CsharpMacros
         {
             var triviaListWithoutEmptyPrefix =  triviaList.SkipWhile(x => string.IsNullOrWhiteSpace(x.ToString())).ToList();
             var header = triviaListWithoutEmptyPrefix.FirstOrDefault().ToString();
-            if (header.Contains("macro(") == false)
+            if (header.Contains("macros.") == false)
             {
                 descriptor = null;
                 return false;
@@ -145,7 +145,6 @@ namespace CsharpMacros
             {
                 MacroName = matches.Groups["macro"].Value.Trim(),
                 Param = matches.Groups["param"].Value.Trim(),
-                VarName = matches.Groups["var"].Value.Trim(),
                 Template = string.Join("", templateLines).TrimEnd(' ')
              };
             return true;
@@ -158,7 +157,7 @@ namespace CsharpMacros
             return document.WithSyntaxRoot(newRoot);
         }
 
-        static readonly Regex macroHeaderSyntax = new Regex("macro\\((?<var>.+?)\\s+in\\s(?<macro>.+?)\\((?<param>.+)\\)\\s*\\)", RegexOptions.Compiled);
+        static readonly Regex macroHeaderSyntax = new Regex("macros\\.(?<macro>.+?)\\((?<param>.+)\\)", RegexOptions.Compiled);
     }
 
     internal static class SyntaxExtensions

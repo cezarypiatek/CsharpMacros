@@ -10,8 +10,8 @@
                 LastName = "Doe",
                 Age = 32
             };
-            //[|macro(x in values((John, Doe), (Tom, Black)))|]
-            //Console.WriteLine("Hello ${x.value1} ${x.value2}")
+            //[|macros.values((John, Doe), (Tom, Black))|]
+            //Console.WriteLine("Hello ${value1} ${value2}")
         }
     }
 }

@@ -23,9 +23,9 @@
         public void DoSth()
         {
             var user = new UserDTO();
-            //[|macro(x in methods(UserDTO))|]
-            //var paramFor${x.name} = default(${x.paramType1});
-            //${x.returnType} resultOf${x.name} = user.${x.name}(paramFor${x.name});
+            //[|macros.methods(UserDTO)|]
+            //var paramFor${name} = default(${paramType1});
+            //${returnType} resultOf${name} = user.${name}(paramFor${name});
         }
     }
 }
