@@ -4,7 +4,7 @@ namespace CsharpMacros.Filters
     {
         public string Filter(string input)
         {
-            return input.ToLower();
+            return input.ToLowerInvariant();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace CsharpMacros.Filters
     {
         public string Filter(string input)
         {
-            throw new System.NotImplementedException();
+            return input.ToUpperInvariant();
         }
     }
 }

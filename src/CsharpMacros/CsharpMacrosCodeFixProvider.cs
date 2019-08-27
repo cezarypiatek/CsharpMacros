@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using CleanCoder;
+using CsharpMacros.Filters;
 using CsharpMacros.Macros;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
@@ -105,30 +106,39 @@ namespace CsharpMacros
         }
 
         private static readonly Regex placeholderPattern = new Regex(@"(?:\$\{(?<placeholder>.+?)\})",RegexOptions.Compiled);
+
         private static readonly Dictionary<string, IPlaceholderFilter> filters = new Dictionary<string, IPlaceholderFilter>()
         {
-
+            ["uppercase"] = new UpperCaseFilter(),
+            ["lowercase"] = new LowerCaseFilter(),
+            ["camelcase"] = new CamelCaseFilter(),
+            ["pascalcase"] = new PascalCaseFilter()
         };
+
         private static string TransformContent(ICsharpMacro macro, MacroDescriptor macroDescriptor, ICsharpMacroContext macroContext)
         {
             var sb = new StringBuilder();
             foreach (var attributes in macro.ExecuteMacro(macroDescriptor.Param, macroContext))
             {
-                var transformedItem = placeholderPattern.Replace(macroDescriptor.Template, (match) =>
-                {
-                    var parts = match.Groups["placeholder"].Value.Trim().Split('|');
-                    var key = parts.First();
-                    var filterParts = parts.Skip(1).ToArray();
-                    if (attributes.ContainsKey(key))
-                    {
-                        return TransformValue(attributes[key], filterParts);
-                    }
-                    return "__unknown_attribute__";
-                });
-               
+                var transformedItem = TransformedTemplate(macroDescriptor.Template, attributes);
                 sb.Append(transformedItem);
             }
             return sb.ToString().Replace("//", "");
+        }
+
+        private static string TransformedTemplate(string template, Dictionary<string, string> attributes)
+        {
+            return placeholderPattern.Replace(template, (match) =>
+            {
+                var parts = match.Groups["placeholder"].Value.Split('|');
+                var key = parts.First().Trim();
+                var filterParts = parts.Skip(1).ToArray();
+                if (attributes.ContainsKey(key))
+                {
+                    return TransformValue(attributes[key], filterParts);
+                }
+                return "__unknown_attribute__";
+            });
         }
 
         private static string TransformValue(string value, string[] filterParts)
@@ -136,7 +146,7 @@ namespace CsharpMacros
             return filterParts.Aggregate(value, (valueToFilter, next) =>
             {
                 var filter = next.Trim();
-                if (filters.ContainsKey(filter))
+                if (filters.ContainsKey(filter) && string.IsNullOrWhiteSpace(valueToFilter) == false)
                 {
                     return filters[filter].Filter(valueToFilter);
                 }

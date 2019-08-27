@@ -1,0 +1,26 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class UserDTO
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+    }
+
+    class _001_ObjectWithOwnProperties
+    {
+        //[|macros.properties(UserDTO)|]
+        //Assert.AreNotEqual(default(${type}), user.${name}, "${name | uppercase | camelcase}")
+        public void DoSth()
+        {
+            var user = new UserDTO()
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Age = 32
+            };
+            //[|macros.properties(UserDTO)|]
+            //Assert.AreNotEqual(default(${type}), user.${name}, "${name | uppercase | camelcase}")
+        }
+    }
+}
