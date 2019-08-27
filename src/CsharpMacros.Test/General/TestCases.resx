@@ -154,4 +154,16 @@
   <data name="_006_WhenMacroIsLastExpressionInMethod_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\006_WhenMacroIsLastExpressionInMethod_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="_007_WhenMacroIsInsideIf_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\007_WhenMacroIsInsideIf_.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_007_WhenMacroIsInsideIf_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\007_WhenMacroIsInsideIf_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_008_WhenMacroIsInsideIfWithoutBracket" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\008_WhenMacroIsInsideIfWithoutBracket.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_008_WhenMacroIsInsideIfWithoutBracket_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\008_WhenMacroIsInsideIfWithoutBracket_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

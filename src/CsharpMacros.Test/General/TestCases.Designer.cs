@@ -400,5 +400,120 @@ namespace CsharpMacros.Test.General {
                 return ResourceManager.GetString("_006_WhenMacroIsLastExpressionInMethod_FIXED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            if(true)
+        ///            {
+        ///                //[|macros.properties(UserDTO)|]
+        ///                //Console.WriteLine(&quot;${name}&quot;);
+        ///            }
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _007_WhenMacroIsInsideIf_ {
+            get {
+                return ResourceManager.GetString("_007_WhenMacroIsInsideIf_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            if(true)
+        ///            {
+        ///                Console.WriteLine(&quot;FirstName&quot;);
+        ///                Console.WriteLine(&quot;LastName&quot;);
+        ///                Console.WriteLine(&quot;Age&quot;);
+        ///            }
+        ///         [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _007_WhenMacroIsInsideIf_FIXED {
+            get {
+                return ResourceManager.GetString("_007_WhenMacroIsInsideIf_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            if(true)
+        ///                //[|macros.properties(UserDTO)|]
+        ///                //Console.WriteLine(&quot;${name}&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _008_WhenMacroIsInsideIfWithoutBracket {
+            get {
+                return ResourceManager.GetString("_008_WhenMacroIsInsideIfWithoutBracket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            if(true)
+        ///                Console.WriteLine(&quot;FirstName&quot;);
+        ///                Console.WriteLine(&quot;LastName&quot;);
+        ///                Console.WriteLine(&quot;Age&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _008_WhenMacroIsInsideIfWithoutBracket_FIXED {
+            get {
+                return ResourceManager.GetString("_008_WhenMacroIsInsideIfWithoutBracket_FIXED", resourceCulture);
+            }
+        }
     }
 }
