@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="General\TestData\004_WhenMacroIsSingleExpressionInMethod.txt" />
+    <None Remove="General\TestData\004_WhenMacroIsSingleExpressionInMethod_FIXED.txt" />
+    <None Remove="General\TestData\005_WhenMacroIsFirstExpressionInMethod.txt" />
+    <None Remove="General\TestData\005_WhenMacroIsFirstExpressionInMethod_FIXED.txt" />
+    <None Remove="General\TestData\006_WhenMacroIsLastExpressionInMethod.txt" />
+    <None Remove="General\TestData\006_WhenMacroIsLastExpressionInMethod_FIXED.txt" />
     <None Remove="Macros\Implement\TestData\001_CustomInterface.txt" />
     <None Remove="Macros\Implement\TestData\001_CustomInterface_FIXED.txt" />
     <None Remove="Macros\Implement\TestData\002_GenericInterface.txt" />
@@ -28,10 +34,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="General\TestData\003_MultipleMacro.txt" />
+    <Content Include="General\TestData\006_WhenMacroIsLastExpressionInMethod.txt" />
+    <Content Include="General\TestData\005_WhenMacroIsFirstExpressionInMethod.txt" />
+    <Content Include="General\TestData\004_WhenMacroIsSingleExpressionInMethod.txt" />
+    <Content Include="General\TestData\003_CommentAboveTheMacro.txt" />
     <Content Include="General\TestData\002_WithMultipleFilters.txt" />
     <Content Include="General\TestData\001_WithSingleFilter.txt" />
-    <Content Include="General\TestData\003_MultipleMacro_FIXED.txt" />
+    <Content Include="General\TestData\006_WhenMacroIsLastExpressionInMethod_FIXED.txt" />
+    <Content Include="General\TestData\005_WhenMacroIsFirstExpressionInMethod_FIXED.txt" />
+    <Content Include="General\TestData\004_WhenMacroIsSingleExpressionInMethod_FIXED.txt" />
+    <Content Include="General\TestData\003_CommentAboveTheMacro_FIXED.txt" />
     <Content Include="General\TestData\002_WIthMultipleFIlters_FIXED.txt" />
     <Content Include="General\TestData\001_WithSIngleFilter_FIXED.txt" />
     <Content Include="Macros\Implement\TestData\002_GenericInterface.txt" />

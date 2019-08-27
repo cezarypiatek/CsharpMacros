@@ -9,8 +9,6 @@
 
     class _001_ObjectWithOwnProperties
     {
-	    //[|macros.properties(UserDTO)|]
-        //Assert.AreNotEqual(default(${type}), user.${name}, "${name | uppercase | camelcase}")
         public void DoSth()
         {
             var user = new UserDTO()
@@ -19,9 +17,10 @@
                 LastName = "Doe",
                 Age = 32
             };
-            Assert.AreNotEqual(default(string), user.FirstName, "fIRSTNAME")
-            Assert.AreNotEqual(default(string), user.LastName, "lASTNAME")
-            Assert.AreNotEqual(default(int), user.Age, "aGE")
+            // Sample comment above the macro
+            // it's very long comment
+            //[|macros.properties(UserDTO)|]
+            //Assert.AreNotEqual(default(${type}), user.${name})
         }
     }
 }

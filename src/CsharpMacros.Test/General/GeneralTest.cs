@@ -19,6 +19,30 @@ namespace CsharpMacros.Test.General
         {
             TestCodeFix(TestCases._002_WithMultipleFilters, TestCases._002_WIthMultipleFIlters_FIXED, MacroCodeAnalyzer.Rule);
         }
+
+        [Test]
+        public void should_be_able_to_execute_macro_below_the_comment()
+        {
+            TestCodeFix(TestCases._003_CommentAboveTheMacro, TestCases._003_CommentAboveTheMacro_FIXED, MacroCodeAnalyzer.Rule);
+        }
+
+        [Test]
+        public void should_be_able_to_execute_macro_when_is_single_expression_in_method()
+        {
+            TestCodeFix(TestCases._004_WhenMacroIsSingleExpressionInMethod, TestCases._004_WhenMacroIsSingleExpressionInMethod_FIXED, MacroCodeAnalyzer.Rule);
+        }
+
+        [Test]
+        public void should_be_able_to_execute_macro_when_is_last_expression_in_method()
+        {
+            TestCodeFix(TestCases._005_WhenMacroIsFirstExpressionInMethod, TestCases._005_WhenMacroIsFirstExpressionInMethod_FIXED, MacroCodeAnalyzer.Rule);
+        }
+
+        [Test]
+        public void should_be_able_to_execute_macro_when_is_first_expression_in_method()
+        {
+            TestCodeFix(TestCases._006_WhenMacroIsLastExpressionInMethod, TestCases._006_WhenMacroIsLastExpressionInMethod_FIXED, MacroCodeAnalyzer.Rule);
+        }
         
         protected override string LanguageName => LanguageNames.CSharp;
 

@@ -59,14 +59,14 @@ namespace CsharpMacros
             foreach (var statement in block.Statements)
             {
                 var triviaList = statement.GetLeadingTrivia();
-                if (Contains(statement.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(triviaList, out var macroDescriptor) )
+                if (Contains(statement.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(triviaList, out var macroDescriptor, out var leadingTrivia) )
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor.MacroName, out var macro))
                     {
                         var macroContext = await CreateMacroContext(document, cancellationToken);
                         var newContent = TransformContent(macro, macroDescriptor, macroContext);
                         var syntaxTree = SyntaxFactory.ParseStatement(newContent);
-                        newStatements.Add(syntaxTree);
+                        newStatements.Add(syntaxTree.WithLeadingTrivia(leadingTrivia));
                     }
                     newStatements.Add(statement.WithLeadingTrivia(triviaList.LastOrDefault()));
                     macroFound = true;
@@ -82,17 +82,19 @@ namespace CsharpMacros
                 var newBlock = block.WithStatements(new SyntaxList<StatementSyntax>(newStatements));
                 return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
             }
-            
-            if (Contains(block.CloseBraceToken.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(block.CloseBraceToken.LeadingTrivia, out var macroDescriptor1))
+
             {
-                if (registeredMacros.TryGetValue(macroDescriptor1.MacroName, out var macro))
+                if (Contains(block.CloseBraceToken.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(block.CloseBraceToken.LeadingTrivia, out var macroDescriptor1, out var leadingTrivia))
                 {
-                    var macroContext = await CreateMacroContext(document, cancellationToken);
-                    var newContent = TransformContent(macro, macroDescriptor1, macroContext);
-                    var syntaxTree = SyntaxFactory.ParseStatement(newContent);
-                    var newBlock = block.AddStatements(syntaxTree);
-                    newBlock = newBlock.WithCloseBraceToken(block.CloseBraceToken.WithLeadingTrivia(block.CloseBraceToken.LeadingTrivia.LastOrDefault()));
-                    return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
+                    if (registeredMacros.TryGetValue(macroDescriptor1.MacroName, out var macro))
+                    {
+                        var macroContext = await CreateMacroContext(document, cancellationToken);
+                        var newContent = TransformContent(macro, macroDescriptor1, macroContext);
+                        var syntaxTree = SyntaxFactory.ParseStatement(newContent);
+                        var newBlock = block.AddStatements(syntaxTree.WithLeadingTrivia(leadingTrivia));
+                        newBlock = newBlock.WithCloseBraceToken(block.CloseBraceToken.WithLeadingTrivia(block.CloseBraceToken.LeadingTrivia.LastOrDefault()));
+                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
+                    }
                 }
             }
             return document;
@@ -163,17 +165,31 @@ namespace CsharpMacros
             };
         }
 
-        private bool TryGetMacroDescriptor(SyntaxTriviaList triviaList, out MacroDescriptor descriptor)
+        private (SyntaxTriviaList beforeMacro, SyntaxTriviaList macro) SplitByMacro(SyntaxTriviaList triviaList)
         {
-            var triviaListWithoutEmptyPrefix =  triviaList.SkipWhile(x => string.IsNullOrWhiteSpace(x.ToString())).ToList();
-            var header = triviaListWithoutEmptyPrefix.FirstOrDefault().ToString();
-            if (header.Contains("macros.") == false)
+            for (int i = 1; i <= triviaList.Count; i++)
+            {
+                if (triviaList[i-1].ToString().Contains("macros."))
+                {
+                    return (SyntaxTriviaList.Empty.AddRange(triviaList.Take(i-1)), SyntaxTriviaList.Empty.AddRange(triviaList.Skip(i - 1)));
+                }
+            }
+
+            return (triviaList, SyntaxTriviaList.Empty);
+        }
+
+        private bool TryGetMacroDescriptor(SyntaxTriviaList triviaList, out MacroDescriptor descriptor, out SyntaxTriviaList leadingTrivia)
+        {
+            var (beforeMacro, macroTrivia) = SplitByMacro(triviaList);
+            leadingTrivia= beforeMacro;
+            if (macroTrivia.Count == 0)
             {
                 descriptor = null;
                 return false;
             }
 
-            var templateLines = triviaListWithoutEmptyPrefix.Skip(1).SkipWhile(x=>x.ToString().Equals("\r\n")).Select(x=>x.ToString());
+            var header = macroTrivia.First().ToString();
+            var templateLines = macroTrivia.Skip(1).SkipWhile(x=>x.ToString().Equals("\r\n")).Select(x=>x.ToString());
             var matches = macroHeaderSyntax.Match(header);
             descriptor = new MacroDescriptor()
             {

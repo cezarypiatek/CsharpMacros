@@ -175,5 +175,230 @@ namespace CsharpMacros.Test.General {
                 return ResourceManager.GetString("_002_WIthMultipleFIlters_FIXED", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            var user = new UserDTO()
+        ///            {
+        ///                FirstName = &quot;John&quot;,
+        ///                LastName = &quot;Doe&quot;,
+        ///                Age = 32
+        ///            };
+        ///            // Sample comment abo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _003_CommentAboveTheMacro {
+            get {
+                return ResourceManager.GetString("_003_CommentAboveTheMacro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            var user = new UserDTO()
+        ///            {
+        ///                FirstName = &quot;John&quot;,
+        ///                LastName = &quot;Doe&quot;,
+        ///                Age = 32
+        ///            };
+        ///            // Sample comment abo [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _003_CommentAboveTheMacro_FIXED {
+            get {
+                return ResourceManager.GetString("_003_CommentAboveTheMacro_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            //[|macros.properties(UserDTO)|]
+        ///            //Console.WriteLine(&quot;${name}&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _004_WhenMacroIsSingleExpressionInMethod {
+            get {
+                return ResourceManager.GetString("_004_WhenMacroIsSingleExpressionInMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            Console.WriteLine(&quot;FirstName&quot;);
+        ///            Console.WriteLine(&quot;LastName&quot;);
+        ///            Console.WriteLine(&quot;Age&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _004_WhenMacroIsSingleExpressionInMethod_FIXED {
+            get {
+                return ResourceManager.GetString("_004_WhenMacroIsSingleExpressionInMethod_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            //[|macros.properties(UserDTO)|]
+        ///            //Console.WriteLine(&quot;${name}&quot;);
+        ///            Console.WriteLine(&quot;!!!END!!!&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _005_WhenMacroIsFirstExpressionInMethod {
+            get {
+                return ResourceManager.GetString("_005_WhenMacroIsFirstExpressionInMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            Console.WriteLine(&quot;FirstName&quot;);
+        ///            Console.WriteLine(&quot;LastName&quot;);
+        ///            Console.WriteLine(&quot;Age&quot;);
+        ///            Console.WriteLine(&quot;!!!END!!!&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _005_WhenMacroIsFirstExpressionInMethod_FIXED {
+            get {
+                return ResourceManager.GetString("_005_WhenMacroIsFirstExpressionInMethod_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            Console.WriteLine(&quot;!!!BEGIN!!!&quot;);
+        ///            //[|macros.properties(UserDTO)|]
+        ///            //Console.WriteLine(&quot;${name}&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _006_WhenMacroIsLastExpressionInMethod {
+            get {
+                return ResourceManager.GetString("_006_WhenMacroIsLastExpressionInMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class UserDTO
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///
+        ///    class _001_ObjectWithOwnProperties
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            Console.WriteLine(&quot;!!!BEGIN!!!&quot;);
+        ///            Console.WriteLine(&quot;FirstName&quot;);
+        ///            Console.WriteLine(&quot;LastName&quot;);
+        ///            Console.WriteLine(&quot;Age&quot;);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _006_WhenMacroIsLastExpressionInMethod_FIXED {
+            get {
+                return ResourceManager.GetString("_006_WhenMacroIsLastExpressionInMethod_FIXED", resourceCulture);
+            }
+        }
     }
 }

@@ -130,4 +130,28 @@
   <data name="_002_WIthMultipleFIlters_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\002_WIthMultipleFIlters_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="_003_CommentAboveTheMacro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\003_CommentAboveTheMacro.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_003_CommentAboveTheMacro_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\003_CommentAboveTheMacro_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_004_WhenMacroIsSingleExpressionInMethod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\004_WhenMacroIsSingleExpressionInMethod.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_004_WhenMacroIsSingleExpressionInMethod_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\004_WhenMacroIsSingleExpressionInMethod_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_005_WhenMacroIsFirstExpressionInMethod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\005_WhenMacroIsFirstExpressionInMethod.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_005_WhenMacroIsFirstExpressionInMethod_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\005_WhenMacroIsFirstExpressionInMethod_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_006_WhenMacroIsLastExpressionInMethod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\006_WhenMacroIsLastExpressionInMethod.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_006_WhenMacroIsLastExpressionInMethod_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\006_WhenMacroIsLastExpressionInMethod_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>
