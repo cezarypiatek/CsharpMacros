@@ -104,18 +104,25 @@ namespace CsharpMacros
             return belongsTo;
         }
 
+        private static readonly Regex placeholderPattern = new Regex(@"(?:\$\{(?<placeholder>.+?)\})",RegexOptions.Compiled);
+
         private static string TransformContent(ICsharpMacro macro, MacroDescriptor macroDescriptor, ICsharpMacroContext macroContext)
         {
             var sb = new StringBuilder();
-            foreach (var item in macro.ExecuteMacro(macroDescriptor.Param, macroContext))
+            foreach (var attributes in macro.ExecuteMacro(macroDescriptor.Param, macroContext))
             {
-                var itemTemplate = macroDescriptor.Template;
-                foreach (var property in item)
+                var transformedItem = placeholderPattern.Replace(macroDescriptor.Template, (match) =>
                 {
-                    itemTemplate = itemTemplate.Replace($"${{{property.Key}}}", property.Value);
-                }
+                    var key = match.Groups["placeholder"].Value.Trim();
+                    if (attributes.ContainsKey(key))
+                    {
+                        return attributes[key];
+                    }
 
-                sb.Append(itemTemplate);
+                    return "__unknown_attribute__";
+                });
+               
+                sb.Append(transformedItem);
             }
             return sb.ToString().Replace("//", "");
         }
