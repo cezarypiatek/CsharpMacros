@@ -10,10 +10,12 @@ namespace CsharpMacros.Macros
             var typeInfo= TypeHelper.GetTypeInfo(param, context);
             foreach (var member in typeInfo.SelectAllMembers<IPropertySymbol>())
             {
+                var (typeNameShort, typeNameLong) = typeInfo.GetMemberType(member.Type);
                 yield return new Dictionary<string, string>()
                 {
                     ["name"] = member.Name,
-                    ["type"] = typeInfo.GetMemberType(member.Type)
+                    ["type"] = typeNameShort,
+                    ["typeLong"] = typeNameLong
                 };
             }
         }

@@ -32,7 +32,7 @@ namespace CsharpMacros.Utils
             return TypeHelper.GetBaseTypesAndThis(Symbol).Reverse().SelectMany(x=>x.GetMembers()).OfType<T>();
         }
 
-        public string GetMemberType(ITypeSymbol memberType)
+        public (string shortName, string longName) GetMemberType(ITypeSymbol memberType)
         {
             if (memberType.TypeKind == TypeKind.TypeParameter)
             {
@@ -40,15 +40,46 @@ namespace CsharpMacros.Utils
                 {
                     if (Symbol.TypeParameters[i].Name == memberType.Name)
                     {
-                        return GenericParameterValues[i];
+                        var genericTypeName = GenericParameterValues[i];
+                        return (genericTypeName, TryGetTypeLongName(genericTypeName));
                     }
                 }
 
-                return "unknown";
+                return ("unknown", "unknown");
             }
 
-            return memberType.ToString();
+            return (memberType.ToString(), memberType.Name);
         }
+
+        private string TryGetTypeLongName(string shortName)
+        {
+            if (typeLongNameMap.ContainsKey(shortName))
+            {
+                return typeLongNameMap[shortName];
+            }
+
+            return shortName;
+        }
+
+        private static Dictionary<string, string> typeLongNameMap = new Dictionary<string, string>()
+        {
+            ["object"]= "Object",
+            ["string"] = "String",
+            ["bool"] = "Boolean",
+            ["byte"] = "Byte",
+            ["char"] = "Char",
+            ["decimal"] = "Decimal",
+            ["double"] = "Double",
+            ["short"] = "Int16",
+            ["int"] = "Int32",
+            ["long"] = "Int64",
+            ["sbyte"] = "SByte",
+            ["float"] = "Single",
+            ["ushort"] = "UInt16",
+            ["uint"] = "UInt32",
+            ["ulong"] = "UInt64",
+            ["void"] = "Void",
+        };
 
     }
 }
