@@ -105,7 +105,10 @@ namespace CsharpMacros
         }
 
         private static readonly Regex placeholderPattern = new Regex(@"(?:\$\{(?<placeholder>.+?)\})",RegexOptions.Compiled);
+        private static readonly Dictionary<string, IPlaceholderFilter> filters = new Dictionary<string, IPlaceholderFilter>()
+        {
 
+        };
         private static string TransformContent(ICsharpMacro macro, MacroDescriptor macroDescriptor, ICsharpMacroContext macroContext)
         {
             var sb = new StringBuilder();
@@ -113,18 +116,32 @@ namespace CsharpMacros
             {
                 var transformedItem = placeholderPattern.Replace(macroDescriptor.Template, (match) =>
                 {
-                    var key = match.Groups["placeholder"].Value.Trim();
+                    var parts = match.Groups["placeholder"].Value.Trim().Split('|');
+                    var key = parts.First();
+                    var filterParts = parts.Skip(1).ToArray();
                     if (attributes.ContainsKey(key))
                     {
-                        return attributes[key];
+                        return TransformValue(attributes[key], filterParts);
                     }
-
                     return "__unknown_attribute__";
                 });
                
                 sb.Append(transformedItem);
             }
             return sb.ToString().Replace("//", "");
+        }
+
+        private static string TransformValue(string value, string[] filterParts)
+        {
+            return filterParts.Aggregate(value, (valueToFilter, next) =>
+            {
+                var filter = next.Trim();
+                if (filters.ContainsKey(filter))
+                {
+                    return filters[filter].Filter(valueToFilter);
+                }
+                return filter;
+            });
         }
 
         private static async Task<CsharpMacroContext> CreateMacroContext(Document document, CancellationToken cancellationToken)
@@ -165,23 +182,5 @@ namespace CsharpMacros
         }
 
         static readonly Regex macroHeaderSyntax = new Regex("macros\\.(?<macro>.+?)\\((?<param>.+)\\)", RegexOptions.Compiled);
-    }
-
-    internal static class SyntaxExtensions
-    {
-        public static T FirstAncestorOfType<T>(this SyntaxNode token) where T : class
-        {
-            if (token is T)
-            {
-                return token as T;
-            }
-
-            if (token.Parent != null)
-            {
-                return FirstAncestorOfType<T>(token.Parent);
-            }
-
-            return default;
-        }
     }
 }
