@@ -54,8 +54,6 @@ namespace CsharpMacros
                 return document;
             }
 
-            var newStatements = new List<StatementSyntax>();
-            var macroFound = false;
             foreach (var statement in block.Statements)
             {
                 var triviaList = statement.GetLeadingTrivia();
@@ -66,21 +64,15 @@ namespace CsharpMacros
                         var macroContext = await CreateMacroContext(document, cancellationToken);
                         var newContent = TransformContent(macro, macroDescriptor, macroContext);
                         var syntaxTree = SyntaxFactory.ParseStatement(newContent);
-                        newStatements.Add(syntaxTree.WithLeadingTrivia(leadingTrivia));
+                        var newBlock = block.ReplaceNode(statement,  new SyntaxNode[]
+                        {
+                            syntaxTree.WithLeadingTrivia(leadingTrivia),
+                            statement.WithLeadingTrivia(triviaList.LastOrDefault())
+                        });
+                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
                     }
-                    newStatements.Add(statement.WithLeadingTrivia(triviaList.LastOrDefault()));
-                    macroFound = true;
+                    return document;
                 }
-                else
-                {
-                    newStatements.Add(statement);
-                }
-            }
-
-            if (macroFound)
-            {
-                var newBlock = block.WithStatements(new SyntaxList<StatementSyntax>(newStatements));
-                return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
             }
 
             {

@@ -33,13 +33,13 @@ namespace CsharpMacros.Test.General
         }
 
         [Test]
-        public void should_be_able_to_execute_macro_when_is_last_expression_in_method()
+        public void should_be_able_to_execute_macro_when_is_first_expression_in_method()
         {
             TestCodeFix(TestCases._005_WhenMacroIsFirstExpressionInMethod, TestCases._005_WhenMacroIsFirstExpressionInMethod_FIXED, MacroCodeAnalyzer.Rule);
         }
 
         [Test]
-        public void should_be_able_to_execute_macro_when_is_first_expression_in_method()
+        public void should_be_able_to_execute_macro_when_is_last_expression_in_method()
         {
             TestCodeFix(TestCases._006_WhenMacroIsLastExpressionInMethod, TestCases._006_WhenMacroIsLastExpressionInMethod_FIXED, MacroCodeAnalyzer.Rule);
         }
