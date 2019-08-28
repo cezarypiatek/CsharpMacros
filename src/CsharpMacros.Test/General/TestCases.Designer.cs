@@ -473,7 +473,7 @@ namespace CsharpMacros.Test.General {
         ///    {
         ///        public void DoSth()
         ///        {
-        ///            if(true)
+        ///            if (true)
         ///                //[|macros.properties(UserDTO)|]
         ///                //Console.WriteLine(&quot;${name}&quot;);
         ///        }
@@ -501,7 +501,7 @@ namespace CsharpMacros.Test.General {
         ///    {
         ///        public void DoSth()
         ///        {
-        ///            if(true)
+        ///            if (true)
         ///                Console.WriteLine(&quot;FirstName&quot;);
         ///                Console.WriteLine(&quot;LastName&quot;);
         ///                Console.WriteLine(&quot;Age&quot;);
@@ -513,6 +513,76 @@ namespace CsharpMacros.Test.General {
         internal static string _008_WhenMacroIsInsideIfWithoutBracket_FIXED {
             get {
                 return ResourceManager.GetString("_008_WhenMacroIsInsideIfWithoutBracket_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class User
+        ///    {
+        ///        //[|macros.values((string, FirstName), (string, LastName))|]
+        ///        //public ${value1} ${value2} { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _009_WhenMacroIsOutsideMethod {
+            get {
+                return ResourceManager.GetString("_009_WhenMacroIsOutsideMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class User
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///        public int Age { get; set; }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _009_WhenMacroIsOutsideMethod_FIXED {
+            get {
+                return ResourceManager.GetString("_009_WhenMacroIsOutsideMethod_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class User
+        ///    {
+        ///        //[|macros.values((string, FirstName), (string, LastName))|]
+        ///        //public ${value1} ${value2} { get; set; }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _010_WhenMacroIsOutsideMethodAndNothingMore {
+            get {
+                return ResourceManager.GetString("_010_WhenMacroIsOutsideMethodAndNothingMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class User
+        ///    {
+        ///        public string FirstName { get; set; }
+        ///        public string LastName { get; set; }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _010_WhenMacroIsOutsideMethodAndNothingMore_FIXED {
+            get {
+                return ResourceManager.GetString("_010_WhenMacroIsOutsideMethodAndNothingMore_FIXED", resourceCulture);
             }
         }
     }

@@ -3,7 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
+    <None Remove="General\TestData\009_WhenMacroIsOutsideMethod.txt" />
+    <None Remove="General\TestData\009_WhenMacroIsOutsideMethod_FIXED.txt" />
+    <None Remove="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore.txt" />
+    <None Remove="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore_FIXED.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore.txt" />
+    <Content Include="General\TestData\009_WhenMacroIsOutsideMethod.txt" />
+    <Content Include="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore_FIXED.txt" />
+    <Content Include="General\TestData\009_WhenMacroIsOutsideMethod_FIXED.txt" />
     <Content Include="General\TestData\008_WhenMacroIsInsideIfWithoutBracket.txt" />
     <Content Include="General\TestData\007_WhenMacroIsInsideIf_.txt" />
     <Content Include="General\TestData\006_WhenMacroIsLastExpressionInMethod.txt" />

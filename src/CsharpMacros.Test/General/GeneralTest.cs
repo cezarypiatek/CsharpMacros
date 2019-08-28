@@ -55,6 +55,18 @@ namespace CsharpMacros.Test.General
         {
             TestCodeFix(TestCases._008_WhenMacroIsInsideIfWithoutBracket, TestCases._008_WhenMacroIsInsideIfWithoutBracket_FIXED, MacroCodeAnalyzer.Rule);
         }
+
+        [Test]
+        public void should_be_able_to_execute_macro_outside_method()
+        {
+            TestCodeFix(TestCases._009_WhenMacroIsOutsideMethod, TestCases._009_WhenMacroIsOutsideMethod_FIXED, MacroCodeAnalyzer.Rule);
+        }
+
+        [Test]
+        public void should_be_able_to_execute_macro_outside_method_and_nothing_more()
+        {
+            TestCodeFix(TestCases._010_WhenMacroIsOutsideMethodAndNothingMore, TestCases._010_WhenMacroIsOutsideMethodAndNothingMore_FIXED, MacroCodeAnalyzer.Rule);
+        }
         
         protected override string LanguageName => LanguageNames.CSharp;
 

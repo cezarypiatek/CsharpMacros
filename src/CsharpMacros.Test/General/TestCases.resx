@@ -166,4 +166,16 @@
   <data name="_008_WhenMacroIsInsideIfWithoutBracket_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\008_WhenMacroIsInsideIfWithoutBracket_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="_009_WhenMacroIsOutsideMethod" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\009_WhenMacroIsOutsideMethod.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_009_WhenMacroIsOutsideMethod_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\009_WhenMacroIsOutsideMethod_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_010_WhenMacroIsOutsideMethodAndNothingMore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\010_WhenMacroIsOutsideMethodAndNothingMore.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_010_WhenMacroIsOutsideMethodAndNothingMore_FIXED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\010_WhenMacroIsOutsideMethodAndNothingMore_FIXED.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

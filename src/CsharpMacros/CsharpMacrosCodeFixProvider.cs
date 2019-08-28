@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Formatting;
 
 namespace CsharpMacros
@@ -48,35 +49,50 @@ namespace CsharpMacros
         {
             var diagnosticSpan = diagnosticLocation.SourceSpan;
             var root = await document.GetSyntaxRootAsync(cancellationToken).ConfigureAwait(false);
-            var block = root.FindToken(diagnosticSpan.Start).Parent.FirstAncestorOfType<BlockSyntax>();
-            if (block == null)
+            var syntaxNode = root.FindToken(diagnosticSpan.Start).Parent;
+
+            var block = syntaxNode.FirstAncestorOfType<BlockSyntax>();
+            if (block != null)
             {
-                return document;
+                return await HandleMacroInsideTheBlock(document, diagnosticLocation, cancellationToken, block);
             }
 
+            var classDeclaration = syntaxNode.FirstAncestorOfType<ClassDeclarationSyntax>();
+            if (classDeclaration != null)
+            {
+                return await HandleMacroInsideClass(document, diagnosticLocation, cancellationToken, classDeclaration);
+            }
+            return document;
+        }
+
+        private async Task<Document> HandleMacroInsideTheBlock(Document document, Location diagnosticLocation, CancellationToken cancellationToken, BlockSyntax block)
+        {
             foreach (var statement in block.Statements)
             {
                 var triviaList = statement.GetLeadingTrivia();
-                if (Contains(statement.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(triviaList, out var macroDescriptor, out var leadingTrivia) )
+                if (Contains(statement.GetLocation(), diagnosticLocation) &&
+                    TryGetMacroDescriptor(triviaList, out var macroDescriptor, out var leadingTrivia))
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor.MacroName, out var macro))
                     {
                         var macroContext = await CreateMacroContext(document, cancellationToken);
                         var newContent = TransformContent(macro, macroDescriptor, macroContext);
                         var syntaxTree = SyntaxFactory.ParseStatement(newContent);
-                        var newBlock = block.ReplaceNode(statement,  new SyntaxNode[]
+                        var newBlock = block.ReplaceNode(statement, new SyntaxNode[]
                         {
                             syntaxTree.WithLeadingTrivia(leadingTrivia),
                             statement.WithLeadingTrivia(triviaList.LastOrDefault())
                         });
-                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
+                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation),
+                            cancellationToken);
                     }
                     return document;
                 }
             }
 
             {
-                if (Contains(block.CloseBraceToken.GetLocation(), diagnosticLocation) && TryGetMacroDescriptor(block.CloseBraceToken.LeadingTrivia, out var macroDescriptor1, out var leadingTrivia))
+                if (Contains(block.CloseBraceToken.GetLocation(), diagnosticLocation) &&
+                    TryGetMacroDescriptor(block.CloseBraceToken.LeadingTrivia, out var macroDescriptor1, out var leadingTrivia))
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor1.MacroName, out var macro))
                     {
@@ -84,8 +100,55 @@ namespace CsharpMacros
                         var newContent = TransformContent(macro, macroDescriptor1, macroContext);
                         var syntaxTree = SyntaxFactory.ParseStatement(newContent);
                         var newBlock = block.AddStatements(syntaxTree.WithLeadingTrivia(leadingTrivia));
-                        newBlock = newBlock.WithCloseBraceToken(block.CloseBraceToken.WithLeadingTrivia(block.CloseBraceToken.LeadingTrivia.LastOrDefault()));
-                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation), cancellationToken);
+                        newBlock = newBlock.WithCloseBraceToken(
+                            block.CloseBraceToken.WithLeadingTrivia(block.CloseBraceToken.LeadingTrivia.LastOrDefault()));
+                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation),
+                            cancellationToken);
+                    }
+                }
+            }
+            return document;
+        }
+
+        private async Task<Document> HandleMacroInsideClass(Document document, Location diagnosticLocation, CancellationToken cancellationToken, ClassDeclarationSyntax block)
+        {
+            foreach (var statement in block.Members)
+            {
+                var triviaList = statement.GetLeadingTrivia();
+                if (Contains(statement.GetLocation(), diagnosticLocation) &&
+                    TryGetMacroDescriptor(triviaList, out var macroDescriptor, out var leadingTrivia))
+                {
+                    if (registeredMacros.TryGetValue(macroDescriptor.MacroName, out var macro))
+                    {
+                        var macroContext = await CreateMacroContext(document, cancellationToken);
+                        var newContent = TransformContent(macro, macroDescriptor, macroContext);
+                        var syntaxTree = SyntaxFactory.ParseSyntaxTree(newContent);
+                        var newBlock = block.ReplaceNode(statement, syntaxTree.GetRoot().ChildNodes().Concat(new SyntaxNode[]
+                        {
+                            statement.WithLeadingTrivia(triviaList.LastOrDefault())
+                        }));
+                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation),
+                            cancellationToken);
+                    }
+                    return document;
+                }
+            }
+
+            {
+                if (Contains(block.CloseBraceToken.GetLocation(), diagnosticLocation) &&
+                    TryGetMacroDescriptor(block.CloseBraceToken.LeadingTrivia, out var macroDescriptor1, out var leadingTrivia))
+                {
+                    if (registeredMacros.TryGetValue(macroDescriptor1.MacroName, out var macro))
+                    {
+                        var macroContext = await CreateMacroContext(document, cancellationToken);
+                        var newContent = TransformContent(macro, macroDescriptor1, macroContext);
+                        var syntaxTree = SyntaxFactory.ParseSyntaxTree(newContent);
+                        var newBlock =
+                            block.AddMembers(syntaxTree.GetRoot().ChildNodes().OfType<MemberDeclarationSyntax>().ToArray());
+                        newBlock = newBlock.WithCloseBraceToken(
+                            block.CloseBraceToken.WithLeadingTrivia(block.CloseBraceToken.LeadingTrivia.LastOrDefault()));
+                        return await ReplaceNodes(document, block, newBlock.WithAdditionalAnnotations(Formatter.Annotation),
+                            cancellationToken);
                     }
                 }
             }
