@@ -2,9 +2,6 @@ namespace CsharpMacros.Filters
 {
     class UpperCaseFilter : IPlaceholderFilter
     {
-        public string Filter(string input)
-        {
-            return input.ToUpperInvariant();
-        }
+        public string Filter(string input) => input.ToUpperInvariant();
     }
 }
