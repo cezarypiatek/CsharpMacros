@@ -11,8 +11,11 @@ namespace CsharpMacros.Utils
         public TypeInfo(string[] nameParts)
         {
             Name = nameParts.Last();
-            Namespace = String.Join(".", nameParts.TakeWhile((_, i) => i < nameParts.Length - 1));
+            Namespace = string.Join(".", nameParts.TakeWhile((_, i) => i < nameParts.Length - 1));
+            FullName = string.Join(".", nameParts);
         }
+
+        public string FullName { get; set; }
 
         public string Name { get; set; }
 

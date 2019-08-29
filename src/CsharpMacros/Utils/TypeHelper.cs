@@ -8,17 +8,34 @@ namespace CsharpMacros.Macros
 {
     static class TypeHelper
     {
-        public static INamedTypeSymbol FindMatchingSymbol(ICsharpMacroContext context, TypeInfo typeInfo)
+        private static INamedTypeSymbol FindMatchingSymbol(ICsharpMacroContext context, TypeInfo typeInfo)
         {
-            var namedCandidates = context.SemanticModel.Compilation.GetSymbolsWithName(typeInfo.Name)?
-                    .OfType<INamedTypeSymbol>();
-
-
+            var namedCandidates = FindSymbolCandidates(context, typeInfo);
             return FindMatchingSymbol(namedCandidates, typeInfo);
         }
 
-        public static INamedTypeSymbol FindMatchingSymbol(IEnumerable<INamedTypeSymbol> namedCandidates,
-            TypeInfo typeInfo)
+        private static List<INamedTypeSymbol> FindSymbolCandidates(ICsharpMacroContext context, TypeInfo typeInfo)
+        {
+            var namedCandidates = context.SemanticModel.Compilation.GetSymbolsWithName(typeInfo.Name)
+                .OfType<INamedTypeSymbol>()
+                .ToList();
+
+            if (namedCandidates.Count != 0)
+                return namedCandidates;
+
+            var symbol = context.SemanticModel.Compilation.GetTypeByMetadataName(typeInfo.FullName);
+            if (symbol != null)
+            {
+                return new List<INamedTypeSymbol>()
+                {
+                    symbol
+                };
+            }
+
+            return new List<INamedTypeSymbol>();
+        }
+
+        public static INamedTypeSymbol FindMatchingSymbol(IEnumerable<INamedTypeSymbol> namedCandidates, TypeInfo typeInfo)
         {
             var candidates = namedCandidates.Where(x =>
                 x.Name == typeInfo.Name && x.ContainingNamespace.ToString().EndsWith(typeInfo.Namespace));
