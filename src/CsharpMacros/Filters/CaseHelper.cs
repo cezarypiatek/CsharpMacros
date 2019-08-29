@@ -9,7 +9,12 @@ namespace CsharpMacros.Filters
 
         public static string ToPascalCase(this string input)
         {
-            return SplitPattern.Split(input).Aggregate("", (left, right) => left + right.Trim().ToLowerInvariant().FirstLetterUp());
+            var parts = SplitPattern.Split(input);
+            if (parts.Length == 1)
+            {
+                return parts[0].FirstLetterUp();
+            }
+            return parts.Aggregate("", (left, right) => left + right.Trim().ToLowerInvariant().FirstLetterUp());
         }
         public static string ToCamelCase(this string input)
         {
