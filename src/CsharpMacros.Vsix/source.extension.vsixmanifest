@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="CsharpMacros.b31988b8-97ee-43c8-b34e-b13e0decb383" Version="3.0" Language="en-US" Publisher="Cezary Piatek"/>
+        <Identity Id="CsharpMacros.b31988b8-97ee-43c8-b34e-b13e0decb383" Version="1.0" Language="en-US" Publisher="Cezary Piątek"/>
         <DisplayName>CsharpMacros</DisplayName>
-        <Description xml:space="preserve">A simple template base system of macros for C# that can be executed in design time
+        <Description xml:space="preserve">A simple template based system of macros for C# that can be executed in design time
 </Description>
+        <Icon>preview.png</Icon>
+        <PreviewImage>preview.png</PreviewImage>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,)" />

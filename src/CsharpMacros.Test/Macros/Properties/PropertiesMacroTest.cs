@@ -3,7 +3,7 @@ using CsharpMacros.Test.Macros.Properties;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using NUnit.Framework;
-using RoslynNUnitLight;
+using RoslynTestKit;
 
 namespace CsharpMacros.Test
 {

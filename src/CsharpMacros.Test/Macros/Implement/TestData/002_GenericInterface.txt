@@ -1,0 +1,23 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    public interface ICustomInterface<T> { }
+    class ImplementedDirectly1: ICustomInterface<string> { }
+    class ImplementedDirectly2: ICustomInterface<int> { }
+    class ImplementedInDirectly: ImplementedDirectly1 { }
+    class ImplementedGeneric<T>: ICustomInterface<T> { }
+    public interface IOtherInterface: ICustomInterface { }
+
+    class _001_ObjectWithOwnMethods
+    {
+        public void Register<T1, T2>()
+        {
+
+        }
+
+        public void DoSth()
+        {
+            //[|macros.implement(ICustomInterface<>)|]
+            //this.Register<${name}, ${interface}>()
+        }
+    }
+}

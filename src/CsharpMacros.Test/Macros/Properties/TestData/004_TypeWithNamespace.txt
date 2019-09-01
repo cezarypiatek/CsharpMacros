@@ -18,8 +18,8 @@
                 LastName = "Doe",
                 Age = 32
             };
-            //[|macro(x in properties(Macros.Properties.TestData.UserDTO))|]
-            //Assert.AreNotEqual(default(${x.type}), user.${x.name})
+            //[|macros.properties(Macros.Properties.TestData.UserDTO)|]
+            //Assert.AreNotEqual(default(${type}), user.${name})
         }
     }
 }

@@ -44,7 +44,7 @@ namespace CleanCoder
             foreach (var node in commentNodes)
             {
                 string commentText = node.ToFullString();
-                if (commentText.Contains("macro("))
+                if (commentText.Contains("macros."))
                 {
                     var diagnostic = Diagnostic.Create(Rule, node.GetLocation());
                     context.ReportDiagnostic(diagnostic);

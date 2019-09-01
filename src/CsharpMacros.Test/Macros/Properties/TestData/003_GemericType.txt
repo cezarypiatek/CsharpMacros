@@ -17,8 +17,8 @@
                 LastName = "Doe",
                 Age = 32
             };
-            //[|macro(x in properties(GenericType<string>))|]
-            //Assert.AreNotEqual(default(${x.type}), user.${x.name})
+            //[|macros.properties(GenericType<string>)|]
+            //Assert.AreNotEqual(default(${type}), user.${name})
         }
     }
 }

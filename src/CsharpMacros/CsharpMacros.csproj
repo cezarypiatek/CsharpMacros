@@ -12,7 +12,7 @@
     <Authors>Cezary Piątek</Authors>
     <PackageLicenseUrl>https://github.com/cezarypiatek/CsharpMacros/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/cezarypiatek/CsharpMacros</PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
+    <PackageIconUrl>https://github.com/cezarypiatek/MappingGenerator/raw/master/src/CsharpMacros.Vsix/preview.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/cezarypiatek/CsharpMacros</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description> A simple template base system of macros for C# that can be executed in design time</Description>
