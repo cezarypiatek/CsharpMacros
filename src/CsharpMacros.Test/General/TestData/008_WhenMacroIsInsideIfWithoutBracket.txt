@@ -12,7 +12,7 @@
         public void DoSth()
         {
             if (true)
-                //[|macros.properties(UserDTO)|]
+                //macros.properties(UserDTO)
                 //Console.WriteLine("${name}");
         }
     }

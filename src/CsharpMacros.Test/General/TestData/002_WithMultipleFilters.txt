@@ -18,7 +18,7 @@
                 LastName = "Doe",
                 Age = 32
             };
-            //[|macros.properties(UserDTO)|]
+            //macros.properties(UserDTO)
             //Assert.AreNotEqual(default(${type}), user.${name}, "${name | uppercase | camelcase}")
         }
     }

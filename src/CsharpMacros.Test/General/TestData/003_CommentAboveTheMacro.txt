@@ -19,7 +19,7 @@
             };
             // Sample comment above the macro
             // it's very long comment
-            //[|macros.properties(UserDTO)|]
+            //macros.properties(UserDTO)
             //Assert.AreNotEqual(default(${type}), user.${name})
         }
     }

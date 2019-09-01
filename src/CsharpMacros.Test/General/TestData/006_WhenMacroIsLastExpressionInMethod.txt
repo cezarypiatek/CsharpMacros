@@ -12,7 +12,7 @@
         public void DoSth()
         {
             Console.WriteLine("!!!BEGIN!!!");
-            //[|macros.properties(UserDTO)|]
+            //macros.properties(UserDTO)
             //Console.WriteLine("${name}");
         }
     }

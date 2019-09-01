@@ -11,7 +11,7 @@
     {
         public void DoSth()
         {
-            //[|macros.properties(UserDTO)|]
+            //macros.properties(UserDTO)
             //Console.WriteLine("${name}");
         }
     }

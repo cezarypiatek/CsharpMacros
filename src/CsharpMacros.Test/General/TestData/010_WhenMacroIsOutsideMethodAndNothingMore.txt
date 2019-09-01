@@ -2,7 +2,7 @@
 {
     class User
     {
-        //[|macros.values((string, FirstName), (string, LastName))|]
+        //macros.values((string, FirstName), (string, LastName))
         //public ${value1} ${value2} { get; set; }
     }
 }
