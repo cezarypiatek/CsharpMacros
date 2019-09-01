@@ -5,7 +5,7 @@ A simple template base system of macros for Visual Studio that can be executed i
 
 ## Releases
 - [nuget](https://www.nuget.org/packages/CsharpMacros/)
-- [VS extension](https://github.com/cezarypiatek/CsharpMacros/releases)
+- [VS extension](https://marketplace.visualstudio.com/items?itemName=54748ff9-45fc-43c2-8ec5-cf7912bc3b84.csharpmacros2)
 
 ### Support for VisualStudio.
 Install as a NuGet package or VSIX. Verify your Roslyn integration option in case you are using R#.
