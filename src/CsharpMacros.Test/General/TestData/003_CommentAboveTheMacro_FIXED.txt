@@ -1,0 +1,27 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class UserDTO
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
+    }
+
+    class _001_ObjectWithOwnProperties
+    {
+        public void DoSth()
+        {
+            var user = new UserDTO()
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Age = 32
+            };
+            // Sample comment above the macro
+            // it's very long comment
+            Assert.AreNotEqual(default(string), user.FirstName)
+            Assert.AreNotEqual(default(string), user.LastName)
+            Assert.AreNotEqual(default(int), user.Age)
+        }
+    }
+}

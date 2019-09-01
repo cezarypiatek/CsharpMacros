@@ -1,0 +1,17 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class _001_Values_Tuples
+    {
+        public void DoSth()
+        {
+            var user = new UserDTO()
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Age = 32
+            };
+            Console.WriteLine("Hello John Doe")
+            Console.WriteLine("Hello Tom Black")
+        }
+    }
+}

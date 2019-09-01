@@ -1,0 +1,17 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class _001_Values_Single
+    {
+        public void DoSth()
+        {
+            var user = new UserDTO()
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Age = 32
+            };
+            //[|macros.values(John, Tom)|]
+            //Console.WriteLine("Hello ${value}")
+        }
+    }
+}
