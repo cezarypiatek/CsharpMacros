@@ -16,6 +16,8 @@ Install as a nuget package
 ### Support for VSCode
 Install as a NuGet package and check `Enable support for Roslyn analyzers, code fixes and rulesets` in Settings.
 
+## LiveTemplates for CsharpMacros
+To facilitate usage of `CsharpMacros` I created a couple of Resharper LiveTemplates. You can read more about that on the [snippets](/snippets) sub-page.
 
 ## Macro anatomy
 
