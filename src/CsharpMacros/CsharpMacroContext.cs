@@ -6,5 +6,6 @@ namespace CsharpMacros
     {
         public SemanticModel SemanticModel { get; set; }
         public Solution Solution { get; set; }
+        public Location MacroLocation { get; set; }
     }
 }

@@ -150,7 +150,7 @@ namespace CsharpMacros.Test.Macros.Methods {
         ///        public void DoSth()
         ///        {
         ///            var user = new UserDTO();
-        ///            //[|macro(x in method [rest of string was truncated]&quot;;.
+        ///            //[|macros.methods(Us [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _002_ObjectWithVoidMethod {
             get {
@@ -187,6 +187,68 @@ namespace CsharpMacros.Test.Macros.Methods {
         internal static string _002_ObjectWithVoidMethod_FIXED {
             get {
                 return ResourceManager.GetString("_002_ObjectWithVoidMethod_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    interface IDoer
+        ///    {
+        ///        public int DoSth1(int a);
+        ///        
+        ///        public void DoSth2(string b, int b);
+        ///    }
+        ///
+        ///    class _001_Doer: IDoer
+        ///    {
+        ///        private readonlu IDoer underlyingDoer;
+        ///
+        ///        //[|macros.methods(IDoer)|]
+        ///        //${signature}
+        ///        //{
+        ///        //  ${returnOperator} underlyingDoer.${name}(${parameters});
+        ///        //}
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _003_ImplementingProxy {
+            get {
+                return ResourceManager.GetString("_003_ImplementingProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    interface IDoer
+        ///    {
+        ///        public int DoSth1(int a);
+        ///        
+        ///        public void DoSth2(string b, int b);
+        ///    }
+        ///
+        ///    class _001_Doer: IDoer
+        ///    {
+        ///        private readonlu IDoer underlyingDoer;
+        ///
+        ///        public int DoSth1(int a)
+        ///        {
+        ///            return underlyingDoer.DoSth1(a);
+        ///        }
+        ///        
+        ///        public void DoSth2(string b, int b)
+        ///        {
+        ///            underlyingDoer.DoSth2(a);
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _003_ImplementingProxy_FIXED {
+            get {
+                return ResourceManager.GetString("_003_ImplementingProxy_FIXED", resourceCulture);
             }
         }
     }

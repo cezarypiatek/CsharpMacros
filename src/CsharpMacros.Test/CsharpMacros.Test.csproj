@@ -9,6 +9,8 @@
     <None Remove="General\TestData\009_WhenMacroIsOutsideMethod_FIXED.txt" />
     <None Remove="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore.txt" />
     <None Remove="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore_FIXED.txt" />
+    <None Remove="Macros\Methods\TestData\003_ImplementingProxy.txt" />
+    <None Remove="Macros\Methods\TestData\003_ImplementingProxy_FIXED.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore.txt" />
@@ -35,6 +37,8 @@
     <Content Include="Macros\Implement\TestData\001_CustomInterface.txt" />
     <Content Include="Macros\Implement\TestData\002_GenericInterface_FIXED.txt" />
     <Content Include="Macros\Implement\TestData\001_CustomInterface_FIXED.txt" />
+    <Content Include="Macros\Methods\TestData\003_ImplementingProxy_FIXED.txt" />
+    <Content Include="Macros\Methods\TestData\003_ImplementingProxy.txt" />
     <Content Include="Macros\Methods\TestData\002_ObjectWithVoidMethod.txt" />
     <Content Include="Macros\Methods\TestData\001_ObjectWithOwnMethods.txt" />
     <Content Include="Macros\Methods\TestData\002_ObjectWithVoidMethod_FIXED.txt" />
