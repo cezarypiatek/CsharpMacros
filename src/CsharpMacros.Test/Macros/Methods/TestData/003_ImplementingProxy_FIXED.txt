@@ -1,0 +1,38 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    interface IDoer
+    {
+        public int DoSth1(int a);
+        
+        public void DoSth2(string a, int b);
+
+        public void DoSth3<T1, T2>(T1 a, T2 b);
+
+        public void DoSth4(string a, ref int b);
+    }
+
+    class _001_Doer : IDoer
+    {
+        private readonlu IDoer underlyingDoer;
+        
+        public int DoSth1(int a)
+        {
+            return underlyingDoer.DoSth1(a);
+        }
+
+        public void DoSth2(string a, int b)
+        {
+            underlyingDoer.DoSth2(a, b);
+        }
+
+        public void DoSth3<T1, T2>(T1 a, T2 b)
+        {
+            underlyingDoer.DoSth3<T1, T2>(a, b);
+        }
+
+        public void DoSth4(string a, ref int b)
+        {
+            underlyingDoer.DoSth4(a, ref b);
+        }
+    }
+}

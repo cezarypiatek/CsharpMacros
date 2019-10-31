@@ -75,7 +75,7 @@ namespace CsharpMacros
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor.MacroName, out var macro))
                     {
-                        var macroContext = await CreateMacroContext(document, cancellationToken);
+                        var macroContext = await CreateMacroContext(document, diagnosticLocation, cancellationToken);
                         var newContent = TransformContent(macro, macroDescriptor, macroContext);
                         var syntaxTree = SyntaxFactory.ParseStatement(newContent);
                         var newBlock = block.ReplaceNode(statement, new SyntaxNode[]
@@ -96,7 +96,7 @@ namespace CsharpMacros
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor1.MacroName, out var macro))
                     {
-                        var macroContext = await CreateMacroContext(document, cancellationToken);
+                        var macroContext = await CreateMacroContext(document, diagnosticLocation, cancellationToken);
                         var newContent = TransformContent(macro, macroDescriptor1, macroContext);
                         var syntaxTree = SyntaxFactory.ParseStatement(newContent);
                         var newBlock = block.AddStatements(syntaxTree.WithLeadingTrivia(leadingTrivia));
@@ -120,7 +120,7 @@ namespace CsharpMacros
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor.MacroName, out var macro))
                     {
-                        var macroContext = await CreateMacroContext(document, cancellationToken);
+                        var macroContext = await CreateMacroContext(document, diagnosticLocation, cancellationToken);
                         var newContent = TransformContent(macro, macroDescriptor, macroContext);
                         var syntaxTree = SyntaxFactory.ParseSyntaxTree(newContent);
                         var newBlock = block.ReplaceNode(statement, syntaxTree.GetRoot().ChildNodes().Concat(new SyntaxNode[]
@@ -140,7 +140,7 @@ namespace CsharpMacros
                 {
                     if (registeredMacros.TryGetValue(macroDescriptor1.MacroName, out var macro))
                     {
-                        var macroContext = await CreateMacroContext(document, cancellationToken);
+                        var macroContext = await CreateMacroContext(document, diagnosticLocation, cancellationToken);
                         var newContent = TransformContent(macro, macroDescriptor1, macroContext);
                         var syntaxTree = SyntaxFactory.ParseSyntaxTree(newContent);
                         var newBlock =
@@ -211,12 +211,13 @@ namespace CsharpMacros
             });
         }
 
-        private static async Task<CsharpMacroContext> CreateMacroContext(Document document, CancellationToken cancellationToken)
+        private static async Task<CsharpMacroContext> CreateMacroContext(Document document, Location macroLocation, CancellationToken cancellationToken)
         {
             return new CsharpMacroContext()
             {
                 SemanticModel = await document.GetSemanticModelAsync(cancellationToken),
-                Solution = document.Project.Solution
+                Solution = document.Project.Solution,
+                MacroLocation =  macroLocation
             };
         }
 

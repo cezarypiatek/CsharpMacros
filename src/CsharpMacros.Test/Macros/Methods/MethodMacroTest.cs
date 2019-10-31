@@ -18,6 +18,12 @@ namespace CsharpMacros.Test.Macros.Methods
         public void should_be_able_to_execute_macro_for_type_with_void_methods()
         {
             TestCodeFix(TestCases._002_ObjectWithVoidMethod, TestCases._002_ObjectWithVoidMethod_FIXED, MacroCodeAnalyzer.Rule);
+        } 
+        
+        [Test]
+        public void should_be_able_to_execute_macro_for_interface_and_get_info_about_signature_parameters_and_return_operators()
+        {
+            TestCodeFix(TestCases._003_ImplementingProxy, TestCases._003_ImplementingProxy_FIXED, MacroCodeAnalyzer.Rule);
         }
         protected override string LanguageName => LanguageNames.CSharp;
 
