@@ -60,7 +60,11 @@ Every macro consists of the following parts
 **Attributes:**
 - `name` - name of the method
 - `returnType` - name of the return type
-- `returnTypeLong` - name of the return type. For primitives from `System` namespace, holds the full name (example: `int` -> `Int32`)
+- `returnTypeLong` - name of the return type. For primitives from `System` namespace, holds the full name. Example: `int` -> `Int32`)
+- `signature` - a complete method signature. Example: `int Calculate(int a, int b)`
+- `returnOperator` - empty string for `void` methods, otherwise `return` keyword
+- `parameters` - comma separated list of parameters wrapped in parenthesis. Example: `(a, b, c)`
+- `genericParameters` - comma separated list of generic type parameters wrapped in angle brackets. Example: `<T1, T2, T3>`
 - `paramNameX` - name of the parameter.  X marks the number of the parameter.
 - `paramTypeX` - name of the parameter type.  X marks the number of the parameter.
 - `paramTypeLongX` - name of the parameter type.  X marks the number of the parameter. For primitives from `System` namespace, holds the full name (example: `int` -> `Int32`)
