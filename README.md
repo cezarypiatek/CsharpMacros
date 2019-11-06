@@ -133,3 +133,21 @@ List of tuples:
 // macros.values((banana, yellow), (strawberry, red), (apple, green))
 // Console.WriteLine("${value1} fruit has ${value2} color.")
 ```
+
+### Range
+
+**Description:**  Returns values from the predefined range. 
+
+**Parameters:** The begin and end of the range
+
+**Attributes:**
+- `index` - current counter value
+- `from` - The begin of the range
+- `to` - The end of the range
+
+**Examples**:
+
+```cs
+//[|macros.range(10, 15)|]
+//Console.WriteLine("Value ${index} from range [${from} - ${to}"];
+```
