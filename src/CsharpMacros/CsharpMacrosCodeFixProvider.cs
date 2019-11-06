@@ -43,6 +43,7 @@ namespace CsharpMacros
             ["values"] = new ValuesMacro(),
             ["implement"] = new ImplementMacro(),
             ["derived"] = new DerivedMacro(),
+            ["range"] = new RangeMacro()
         };
 
         private async Task<Document> ExecuteMacro(Document document, Location diagnosticLocation, CancellationToken cancellationToken)

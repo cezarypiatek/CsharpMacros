@@ -11,6 +11,8 @@
     <None Remove="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore_FIXED.txt" />
     <None Remove="Macros\Methods\TestData\003_ImplementingProxy.txt" />
     <None Remove="Macros\Methods\TestData\003_ImplementingProxy_FIXED.txt" />
+    <None Remove="Macros\Range\TestData\001_SimpleRange.txt" />
+    <None Remove="Macros\Range\TestData\001_SimpleRange_FIXED.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore.txt" />
@@ -51,6 +53,8 @@
     <Content Include="Macros\Properties\TestData\002_ObjectWithInheritedProperties_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\001_ObjectWithOwnProperties_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\001_ObjectWithOwnProperties.txt" />
+    <Content Include="Macros\Range\TestData\001_SimpleRange.txt" />
+    <Content Include="Macros\Range\TestData\001_SimpleRange_FIXED.txt" />
     <Content Include="Macros\Values\TestData\002_TupleValues.txt" />
     <Content Include="Macros\Values\TestData\001_SingleValues.txt" />
     <Content Include="Macros\Values\TestData\002_TupleValues_FIXED.txt" />
@@ -93,6 +97,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TestCases.resx</DependentUpon>
     </Compile>
+    <Compile Update="Macros\Range\TestCases.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestCases.resx</DependentUpon>
+    </Compile>
     <Compile Update="Macros\Values\TestCases.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -114,6 +123,10 @@
       <LastGenOutput>TestCases.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Macros\Properties\TestCases.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestCases.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Macros\Range\TestCases.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TestCases.Designer.cs</LastGenOutput>
     </EmbeddedResource>
