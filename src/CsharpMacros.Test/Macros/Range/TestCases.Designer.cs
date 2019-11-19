@@ -61,31 +61,19 @@ namespace CsharpMacros.Test.Macros.Range {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///   Looks up a localized string similar to using System.
+        ///namespace CsharpMacros.Test.Macros.Properties.TestData
         ///{
-        ///    class UserDTO
-        ///    {
-        ///        public string FirstName { get; set; }
-        ///        public string LastName { get; set; }
-        ///        public int Age { get; set; }
-        ///
-        ///        public int DoSth1(int a)
-        ///        {
-        ///            return 1;
-        ///        }
-        ///        
-        ///        public string DoSth2(string b)
-        ///        {
-        ///            return &quot;&quot;;
-        ///        }
-        ///    }
-        ///
         ///    class _001_ObjectWithOwnMethods
         ///    {
-        ///
         ///        public void DoSth()
         ///        {
-        ///            var user = n [rest of string was truncated]&quot;;.
+        ///            //[|macros.range(10, 15)|]
+        ///            //Console.WriteLine(&quot;Value ${index} from range [${from} - ${to}&quot;];
+        ///        }
+        ///    }
+        ///}
+        ///.
         /// </summary>
         internal static string _001_SimpleRange {
             get {
@@ -94,35 +82,65 @@ namespace CsharpMacros.Test.Macros.Range {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///   Looks up a localized string similar to using System.
+        ///namespace CsharpMacros.Test.Macros.Properties.TestData
         ///{
-        ///    class UserDTO
-        ///    {
-        ///        public string FirstName { get; set; }
-        ///        public string LastName { get; set; }
-        ///        public int Age { get; set; }
-        ///
-        ///        public int DoSth1(int a)
-        ///        {
-        ///            return 1;
-        ///        }
-        ///        
-        ///        public string DoSth2(string b)
-        ///        {
-        ///            return &quot;&quot;;
-        ///        }
-        ///    }
-        ///
         ///    class _001_ObjectWithOwnMethods
         ///    {
-        ///
         ///        public void DoSth()
         ///        {
-        ///            var user = n [rest of string was truncated]&quot;;.
+        ///            Console.WriteLine(&quot;Value 10 from range [10 - 15&quot;];
+        ///            Console.WriteLine(&quot;Value 11 from range [10 - 15&quot;];
+        ///            Console.WriteLine(&quot;Value 12 from range [10 - 15&quot;];
+        ///            Console.WriteLine(&quot;Value 13 from range [10 - 15&quot;];
+        ///            Console.WriteLine(&quot;Value 14 from range [10 - 15&quot;];
+        ///            Console.WriteLine(&quot;Val [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _001_SimpleRange_FIXED {
             get {
                 return ResourceManager.GetString("_001_SimpleRange_FIXED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System.
+        ///namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class _001_ObjectWithOwnMethods
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            //[|macros.range(10, 20, 2)|]
+        ///            //Console.WriteLine(&quot;Value ${index} from range [${from} - ${to} - ${step}&quot;];
+        ///        }
+        ///    }
+        ///}
+        ///.
+        /// </summary>
+        internal static string _002_SimpleRangeStep {
+            get {
+                return ResourceManager.GetString("_002_SimpleRangeStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System.
+        ///namespace CsharpMacros.Test.Macros.Properties.TestData
+        ///{
+        ///    class _001_ObjectWithOwnMethods
+        ///    {
+        ///        public void DoSth()
+        ///        {
+        ///            Console.WriteLine(&quot;Value 10 from range [10 - 20 - 2&quot;];
+        ///            Console.WriteLine(&quot;Value 12 from range [10 - 20 - 2&quot;];
+        ///            Console.WriteLine(&quot;Value 14 from range [10 - 20 - 2&quot;];
+        ///            Console.WriteLine(&quot;Value 16 from range [10 - 20 - 2&quot;];
+        ///            Console.WriteLine(&quot;Value 18 from range [10 - 20 - 2&quot;];
+        ///            Co [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _002_SimpleRangeStep_FIXED {
+            get {
+                return ResourceManager.GetString("_002_SimpleRangeStep_FIXED", resourceCulture);
             }
         }
     }

@@ -1,0 +1,16 @@
+﻿using System.
+namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class _001_ObjectWithOwnMethods
+    {
+        public void DoSth()
+        {
+            Console.WriteLine("Value 10 from range [10 - 20 - 2"];
+            Console.WriteLine("Value 12 from range [10 - 20 - 2"];
+            Console.WriteLine("Value 14 from range [10 - 20 - 2"];
+            Console.WriteLine("Value 16 from range [10 - 20 - 2"];
+            Console.WriteLine("Value 18 from range [10 - 20 - 2"];
+            Console.WriteLine("Value 20 from range [10 - 20 - 2"];
+        }
+    }
+}
