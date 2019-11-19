@@ -1,0 +1,12 @@
+﻿using System.
+namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+    class _001_ObjectWithOwnMethods
+    {
+        public void DoSth()
+        {
+            //[|macros.range(10, 20, 2)|]
+            //Console.WriteLine("Value ${index} from range [${from} - ${to} - ${step}"];
+        }
+    }
+}
