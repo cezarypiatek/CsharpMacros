@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace CsharpMacros.Macros
@@ -17,10 +18,10 @@ namespace CsharpMacros.Macros
                 var step = 1;
                 if (matchedRange.Groups["step"].Success)
                 {
-                    step = int.Parse(matchedRange.Groups["step"].Value);
-                    if (step < 1 || from > to)
+                    step = Math.Max(int.Parse(matchedRange.Groups["step"].Value), 1);
+                    if (from > to)
                     {
-                        // Not sure if an exception should be thrown here.
+                        to = from;
                     }
                 }
 
