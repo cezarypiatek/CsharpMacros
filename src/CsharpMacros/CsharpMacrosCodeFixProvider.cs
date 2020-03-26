@@ -43,7 +43,8 @@ namespace CsharpMacros
             ["values"] = new ValuesMacro(),
             ["implement"] = new ImplementMacro(),
             ["derived"] = new DerivedMacro(),
-            ["range"] = new RangeMacro()
+            ["range"] = new RangeMacro(),
+            ["enum"] = new EnumValuesMacro()
         };
 
         private async Task<Document> ExecuteMacro(Document document, Location diagnosticLocation, CancellationToken cancellationToken)

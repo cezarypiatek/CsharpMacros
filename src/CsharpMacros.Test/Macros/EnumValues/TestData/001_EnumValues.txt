@@ -1,0 +1,18 @@
+﻿namespace CsharpMacros.Test.Macros.Properties.TestData
+{
+   enum SampleEnum
+   {
+        Val1 = 1,
+        Val2 = 2,
+   }
+
+    class _001_ObjectWithOwnProperties
+    {
+
+        public void DoSth()
+        {
+            //[|macros.enum(SampleEnum)|]
+            //System.Console.WriteLine("${name}")
+        }
+    }
+}
