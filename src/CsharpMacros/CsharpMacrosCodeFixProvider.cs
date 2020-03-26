@@ -171,7 +171,8 @@ namespace CsharpMacros
             ["uppercase"] = new UpperCaseFilter(),
             ["lowercase"] = new LowerCaseFilter(),
             ["camelcase"] = new CamelCaseFilter(),
-            ["pascalcase"] = new PascalCaseFilter()
+            ["pascalcase"] = new PascalCaseFilter(),
+            ["snakecase"] = new SnakeCaseFilter(),
         };
 
         private static string TransformContent(ICsharpMacro macro, MacroDescriptor macroDescriptor, ICsharpMacroContext macroContext)
