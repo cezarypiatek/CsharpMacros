@@ -16,6 +16,14 @@ namespace CsharpMacros.Filters
             }
             return parts.Aggregate("", (left, right) => left + right.Trim().ToLowerInvariant().FirstLetterUp());
         }
+        
+        public static string ToSnakeCase(this string input)
+        {
+            var parts = Regex.Split(input, "(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
+
+            return string.Join("_", parts.Select(x => x.Trim().ToLowerInvariant()));
+        }
+
         public static string ToCamelCase(this string input)
         {
             return input.ToPascalCase().FirstLetterDown();

@@ -36,5 +36,18 @@ namespace CsharpMacros.Test.UtilsTests
         {
             Assert.AreEqual("thisIsTextAbout7777", "This is && text == about 7777".ToCamelCase());
         }
+
+        [Test]
+        public void should_be_able_to_convert_to_snake_case()
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual("sample", "sample".ToSnakeCase());
+                Assert.AreEqual("sample_text_like", "sampleTextLike".ToSnakeCase());
+                Assert.AreEqual("sample_text_like", "SampleTextLike".ToSnakeCase());
+                Assert.AreEqual("sample_text_like", "SampleTEXTLike".ToSnakeCase());
+                Assert.AreEqual("sample_text_like", "Sample Text Like".ToSnakeCase());
+            });
+        }
     }
 }

@@ -29,7 +29,7 @@ Every macro consists of the following parts
 2. `Macro Template` - a template of code that will be repeated for every element returned by the macro function. The template can contain placeholders in the following format `${attribute_name}` that will be replaced with a given attribute value of the element returned by the macro function.
 3. `macro_function` represents one of the predefined functions that generate input data for the template. 
 4. `macro_params` is the input for macro function.
-5. The placeholder that will be replaced with the value of the given attribute. Placeholders can also contain filters that transform the attribute value. Syntax for placeholder with filter `${attribute_Name | filter_name}`. The filters can be combined together by chaining them with `|` operator. Currently available filters: `lowercase`, `uppercase`, `pascalcase`, `camelcase`.
+5. The placeholder that will be replaced with the value of the given attribute. Placeholders can also contain filters that transform the attribute value. Syntax for placeholder with filter `${attribute_Name | filter_name}`. The filters can be combined together by chaining them with `|` operator. Currently available filters: `lowercase`, `uppercase`, `pascalcase`, `camelcase`, `snakecase`.
 
 
 ## Macro functions
@@ -149,5 +149,21 @@ List of tuples:
 
 ```cs
 //[|macros.range(10, 15)|]
-//Console.WriteLine("Value ${index} from range [${from} - ${to}"];
+//Console.WriteLine("Value ${index} from range [${from} - ${to}");
+```
+
+### Enum
+
+**Description:**  Returns a list of enum values
+
+**Parameters:** Enum type. For types from other projects/assemblies include also the namespace.
+
+**Attributes:**
+- `name` - the name of enum option
+
+**Examples**:
+
+```cs
+//[|macros.enum(SampleEnumType)|]
+//Console.WriteLine("Option: ${name}");
 ```
