@@ -148,7 +148,7 @@ List of tuples:
 **Examples**:
 
 ```cs
-//[|macros.range(10, 15)|]
+// macros.range(10, 15)
 //Console.WriteLine("Value ${index} from range [${from} - ${to}");
 ```
 
@@ -164,6 +164,6 @@ List of tuples:
 **Examples**:
 
 ```cs
-//[|macros.enum(SampleEnumType)|]
+// macros.enum(SampleEnumType)
 //Console.WriteLine("Option: ${name}");
 ```
