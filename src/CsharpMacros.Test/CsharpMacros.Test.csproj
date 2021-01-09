@@ -11,6 +11,8 @@
     <None Remove="General\TestData\010_WhenMacroIsOutsideMethodAndNothingMore_FIXED.txt" />
     <None Remove="Macros\Methods\TestData\003_ImplementingProxy.txt" />
     <None Remove="Macros\Methods\TestData\003_ImplementingProxy_FIXED.txt" />
+    <None Remove="Macros\Properties\TestData\005_EnumValues.txt" />
+    <None Remove="Macros\Properties\TestData\005_EnumValues_FIXED.txt" />
     <None Remove="Macros\Range\TestData\001_SimpleRange.txt" />
     <None Remove="Macros\Range\TestData\001_SimpleRange_FIXED.txt" />
   </ItemGroup>
@@ -45,7 +47,9 @@
     <Content Include="Macros\Methods\TestData\001_ObjectWithOwnMethods.txt" />
     <Content Include="Macros\Methods\TestData\002_ObjectWithVoidMethod_FIXED.txt" />
     <Content Include="Macros\Methods\TestData\001_ObjectWithOwnMethods_FIXED.txt" />
+    <Content Include="Macros\EnumValues\TestData\001_EnumValues.txt" />
     <Content Include="Macros\Properties\TestData\004_TypeWithNamespace.txt" />
+    <Content Include="Macros\EnumValues\TestData\001_EnumValues_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\004_TypeWIthNamespace_FIXED.txt" />
     <Content Include="Macros\Properties\TestData\003_GemericType.txt" />
     <Content Include="Macros\Properties\TestData\003_GemericType_FIXED.txt" />
@@ -62,14 +66,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Appveyor.TestLogger" Version="2.0.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.6.2" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.10" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="2.10" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-    <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.14.0" />
-    <PackageReference Include="SmartAnalyzers.RoslynTestKit" Version="1.0.13" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces" Version="3.7.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Features" Version="3.7.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.7.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="SmartAnalyzers.RoslynTestKit" Version="3.0.61" />
   </ItemGroup>
 
   <ItemGroup>
@@ -78,6 +83,11 @@
 
   <ItemGroup>
     <Compile Update="General\TestCases.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestCases.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Macros\EnumValues\TestCases.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>TestCases.resx</DependentUpon>
@@ -111,6 +121,10 @@
 
   <ItemGroup>
     <EmbeddedResource Update="General\TestCases.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestCases.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Macros\EnumValues\TestCases.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TestCases.Designer.cs</LastGenOutput>
     </EmbeddedResource>
