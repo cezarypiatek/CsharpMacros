@@ -9,7 +9,6 @@
 
   <PropertyGroup>
     <PackageId>CsharpMacros</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
     <Authors>Cezary Piątek</Authors>
     <PackageLicenseUrl>https://github.com/cezarypiatek/CsharpMacros/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/cezarypiatek/CsharpMacros</PackageProjectUrl>
