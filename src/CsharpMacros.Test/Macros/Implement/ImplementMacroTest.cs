@@ -1,5 +1,4 @@
-﻿using CleanCoder;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace CsharpMacros.Test.Macros.Implement
 {

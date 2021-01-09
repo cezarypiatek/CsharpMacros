@@ -16,7 +16,7 @@
     <RepositoryUrl>https://github.com/cezarypiatek/CsharpMacros</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description> A simple template base system of macros for C# that can be executed in design time</Description>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>Release notes: https://github.com/cezarypiatek/CsharpMacros/releases</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
     <PackageTags>CsharpMacros, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
