@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanCoder;
 using CsharpMacros.Filters;
 using CsharpMacros.Macros;
 using Microsoft.CodeAnalysis;
@@ -14,7 +13,6 @@ using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Editing;
 using Microsoft.CodeAnalysis.Formatting;
 
 namespace CsharpMacros
@@ -25,7 +23,7 @@ namespace CsharpMacros
         private const string title = "Execute macro";
 
         public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(MacroCodeAnalyzer.DiagnosticId);
-        public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
+        public sealed override Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var diagnostic = context.Diagnostics.First();
             context.RegisterCodeFix(
@@ -34,6 +32,7 @@ namespace CsharpMacros
                     createChangedDocument: c => ExecuteMacro(context.Document, diagnostic.Location, c),
                     equivalenceKey: title),
                 diagnostic);
+            return Task.CompletedTask;
         }
 
         private readonly Dictionary<string, ICsharpMacro> registeredMacros = new Dictionary<string, ICsharpMacro>()

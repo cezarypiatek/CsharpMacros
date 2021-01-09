@@ -1,5 +1,4 @@
-﻿using CleanCoder;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeFixes;
 using RoslynTestKit;
 

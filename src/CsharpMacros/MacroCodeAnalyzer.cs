@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace CleanCoder
+namespace CsharpMacros
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class MacroCodeAnalyzer : DiagnosticAnalyzer
